@@ -159,6 +159,11 @@ namespace Sel
             AddLabelAndTextBox(grid, "Begin Date:", 11, 0, out employer2BeginDateTextBox, "01/01/2020", 95);
             AddLabelAndTextBox(grid, "End Date:", 12, 0, out employer2EndDateTextBox, DateTime.Today.ToString("MM/dd/yyyy"), 95);
 
+            // Add event handlers for clearing and restoring text
+            AddTextBoxFocusHandlers(firstnameTextBox, "Random");
+            AddTextBoxFocusHandlers(lastnameTextBox, "Random");
+            AddTextBoxFocusHandlers(ssnTextBox, "Random");
+
             // Add Select Pages button, aligned to the left
             selectPagesButton = new Button
             {
@@ -248,6 +253,25 @@ namespace Sel
             Grid.SetRow(textBox, row);
             Grid.SetColumn(textBox, column + 1);
             grid.Children.Add(textBox);
+        }
+
+        private void AddTextBoxFocusHandlers(TextBox textBox, string defaultText)
+        {
+            textBox.GotFocus += (sender, e) =>
+            {
+                if (textBox.Text == defaultText)
+                {
+                    textBox.Clear();
+                }
+            };
+
+            textBox.LostFocus += (sender, e) =>
+            {
+                if (string.IsNullOrWhiteSpace(textBox.Text))
+                {
+                    textBox.Text = defaultText;
+                }
+            };
         }
 
         private void UpdateFieldsBasedOnEnvironment(object? sender, SelectionChangedEventArgs? e)
