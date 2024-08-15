@@ -42,7 +42,7 @@ namespace Sel
         private void InitializeComponents()
         {
             this.Title = "Sel";
-            this.Width = 500;
+            this.Width = 530;
             this.Height = 600;
             this.ResizeMode = ResizeMode.CanMinimize;
             this.WindowStyle = WindowStyle.SingleBorderWindow;
@@ -170,7 +170,7 @@ namespace Sel
                 Content = "Select Pages",
                 Width = 100,
                 Height = 25,
-                Margin = new Thickness(5),
+                Margin = new Thickness(1),
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Center
             };
@@ -185,7 +185,7 @@ namespace Sel
                 Content = "Reset",
                 Width = 100,
                 Height = 25,
-                Margin = new Thickness(5, 0, 40, 0), // Moved to the left
+                Margin = new Thickness(5, 0, 0, 0), // Moved to the left
                 HorizontalAlignment = HorizontalAlignment.Right,
                 VerticalAlignment = VerticalAlignment.Center
             };
@@ -216,9 +216,10 @@ namespace Sel
             startButton = new Button
             {
                 Content = "Start",
-                Width = 200,
-                Height = 30,
-                Margin = new Thickness(5),
+                Width = 510,
+                Height = 50,
+                Background = new SolidColorBrush(Color.FromArgb(255, 218, 252, 218)),
+                //Margin = new Thickness(1),
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Bottom
             };
