@@ -1,9 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Numerics;
+using System.Runtime.Intrinsics.X86;
+using System.Security.Policy;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using Sel.Data;
 using Sel.Enums;
+using Sel.Utilities;
 
 namespace Sel
 {
@@ -28,6 +33,8 @@ namespace Sel
         private TextBox? employer2EndDateTextBox;
         private CheckBox? useSecondEmployerCheckBox;
         private TextBox? createdUsernamesTextArea;
+
+        private string? stateAbbreviation;
 
         private List<Environment> environments;
         private List<PageType> selectedPages;
@@ -289,6 +296,7 @@ namespace Sel
                 zipTextBox!.Text = environment.ZipCode;
                 employer1TextBox!.Text = environment.Employer1;
                 employer2TextBox!.Text = environment.Employer2;
+                stateAbbreviation = environment.StateAbbreviation;
             }
         }
 
@@ -320,19 +328,34 @@ namespace Sel
         {
             startButton!.IsEnabled = false;
 
-            string? url = urlTextBox?.Text;
+            // Fetch data from UI elements and store it in TestData
+            FetchData();
 
-            if (!string.IsNullOrEmpty(url) && selectedPages != null)
+            if (!string.IsNullOrEmpty(TestData.Url) && selectedPages != null)
             {
-                await Task.Run(() => SeleniumBase.RunSeleniumTest(url, selectedPages));
-                MessageBox.Show("Selenium test completed!");
+                try
+                {
+                    // Run the WebDriver on a separate thread using the pre-fetched TestData
+                    await Task.Run(() =>
+                    {
+                        SeleniumBase.RunSeleniumTest(TestData.Url, selectedPages);
+                    });
+                    MessageBox.Show("Selenium test completed!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred: {ex.Message}");
+                }
+                finally
+                {
+                    startButton.IsEnabled = true;
+                }
             }
             else
             {
                 MessageBox.Show("Please select a valid environment and pause pages.");
+                startButton.IsEnabled = true;
             }
-
-            startButton.IsEnabled = true;
         }
 
         private void ResetButton_Click(object sender, RoutedEventArgs e)
@@ -369,6 +392,28 @@ namespace Sel
         {
             SeleniumBase.QuitDriver();
             base.OnClosed(e);
+        }
+
+        private void FetchData()
+        {
+            TestData.SSN = String.IsNullOrWhiteSpace(ssnTextBox!.Text) || ssnTextBox.Text == "Random"
+                ? DataGenerator.GenerateRandomNumbers(1, "234567") + DataGenerator.GenerateRandomNumbers(8)
+                : ssnTextBox.Text;
+            TestData.Url = urlTextBox!.Text;
+            TestData.StateAbbreviation = stateAbbreviation;
+            TestData.Zip = zipTextBox!.Text;
+            TestData.Employer1 = employer1TextBox!.Text;
+            TestData.Employer2 = employer2TextBox!.Text;
+            TestData.useTwoEmployers = useSecondEmployerCheckBox!.IsChecked ?? false;
+            TestData.FirstName = firstnameTextBox!.Text;
+            TestData.LastName = lastnameTextBox!.Text;
+            TestData.DOB = dobTextBox!.Text;
+            TestData.WorkBeginDate1 = employer1BeginDateTextBox!.Text;
+            TestData.WorkEndDate1 = employer1EndDateTextBox!.Text;
+            TestData.WorkBeginDate2 = employer2BeginDateTextBox!.Text;
+            TestData.WorkEndDate2 = employer2EndDateTextBox!.Text;
+            TestData.Username = "GSIUIAI" + DataGenerator.GenerateRandomLetters(7) + (new[] { "PR" }.Any(site => TestData.Site.Contains(site)) ? "01" : "1");
+            TestData.Email = TestData.Username + "@geosolinc.com";
         }
     }
 }

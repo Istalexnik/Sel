@@ -11,40 +11,39 @@ namespace Sel.Pages
 {
     public class UI_060_MilitaryService
     {
-        By rbMilitaryServiceNo = By.CssSelector("label[for='ctl00_Main_content_Wizard1_rblMilitaryService_1']");
-        By rbMilitaryServiceYes = By.CssSelector("label[for='ctl00_Main_content_Wizard1_rblMilitaryService_0']");
-        By ddWherePhysicallyLocated = By.Id("ctl00_Main_content_Wizard1_ddlPhysicalLocation");
-        By btnOk = By.Id("btn-dialog-ok");
-        By rbLocatedInHostStateYes = By.CssSelector("label[for='ctl00_Main_content_Wizard1_rblPhysicallyInState_0']");
-        By txtAddress = By.Id("ctl00_Main_content_Wizard1_txtMilitaryAddress1");
-        By txtZip = By.Id("ctl00_Main_content_Wizard1_txtMilitaryZip");
-        By txtCity = By.Id("ctl00_Main_content_Wizard1_txtMilitaryCity");
-        By btnNext = By.Id("ctl00_Main_content_Wizard1_StepNavigationTemplateContainerID_StepNextButton");
+        By rbMilitaryServiceNo = By.CssSelector("label[for$=rblMilitaryService_1]");
+        By rbMilitaryServiceYes = By.CssSelector("label[for$=rblMilitaryService_0]");
+        By ddWherePhysicallyLocated = By.CssSelector("select[id$=ctl00_Main_content_Wizard1_ddlPhysicalLocation]");
+        By btnOk = By.CssSelector("input[id$=btn-dialog-ok]");
+        By rbLocatedInHostStateYes = By.CssSelector("label[for$=rblPhysicallyInState_0]");
+        By txtAddress = By.CssSelector("input[id$=txtMilitaryAddress1]");
+        By txtZip = By.CssSelector("input[id$=txtMilitaryZip]");
+        By txtCity = By.CssSelector("input[id$=txtMilitaryCity]");
+        By btnNext = By.CssSelector("input[id$=StepNextButton]");
 
-        By rbAddMilitaryEmployerYes = By.CssSelector("label[for='ctl00_Main_content_Wizard1_ucMilitaryServiceHistory_rbAddNewEmp_0']");
-        By rbAddMilitaryEmployerNo = By.CssSelector("label[for='ctl00_Main_content_Wizard1_ucMilitaryServiceHistory_rbAddNewEmp_1']");
+        By rbAddMilitaryEmployerYes = By.CssSelector("label[for$=rbAddNewEmp_0]");
+        By rbAddMilitaryEmployerNo = By.CssSelector("label[for$=rbAddNewEmp_1]");
 
-        By rbHaveYouFiledNo = By.CssSelector("label[for='ctl00_Main_content_Wizard1_ucMilitaryService_rblFiledInStateAfterSeparation_1']");
-        By rbDD214Yes = By.CssSelector("label[for='ctl00_Main_content_Wizard1_ucMilitaryService_rblMember4OfDD214_0']");
-        By ddServiceBranch = By.Id("ctl00_Main_content_Wizard1_ucMilitaryService_ddlServiceBranch");
-        By txtEntryDate = By.Id("ctl00_Main_content_Wizard1_ucMilitaryService_txtServiceEntryDate");
-        By txtSeparationDate = By.Id("ctl00_Main_content_Wizard1_ucMilitaryService_txtServiceSeparationDate");
-        By ddCharacterOfService = By.Id("ctl00_Main_content_Wizard1_ucMilitaryService_ddlDischargeStatus");
-        By ddReasonForSeparation = By.Id("ctl00_Main_content_Wizard1_ucMilitaryService_ddlReasonForSeparation");
-        By rbGovernmentShutdownNo = By.CssSelector("label[for='ctl00_Main_content_Wizard1_ucMilitaryService_rblSepDueToGovShutdown_1']");
-        By ddPayGrade = By.Id("ctl00_Main_content_Wizard1_ucMilitaryService_ddlPayGrade");
-        By txtAccruedDaysOfLeave = By.Id("ctl00_Main_content_Wizard1_ucMilitaryService_txtAccuredDaysOfLeave");
-        By txtLostDays = By.Id("ctl00_Main_content_Wizard1_ucMilitaryService_txtLostDays");
-        By rbPhysicalDisabilityNo = By.CssSelector("label[for='ctl00_Main_content_Wizard1_ucMilitaryService_rblDischargePhysicalDisability_1']");
-        By rbMilitaryRetireeNo = By.CssSelector("label[for='ctl00_Main_content_Wizard1_ucMilitaryService_rblMilitaryRetiree_1']");
-        By rbCompletedFirstTermNo = By.CssSelector("label[for='ctl00_Main_content_Wizard1_ucMilitaryService_rblCompletedFirstFullTermDuty_1']");
-        By txtYearsAgreed = By.Id("ctl00_Main_content_Wizard1_ucMilitaryService_txtYearsOfServiceAgreedTo");
-        By txtYearsCompleted = By.Id("ctl00_Main_content_Wizard1_ucMilitaryService_txtYearsOfServiceCompleted");
+        By rbHaveYouFiledNo = By.CssSelector("label[for$=rblFiledInStateAfterSeparation_1]");
+        By rbDD214Yes = By.CssSelector("label[for$=rblMember4OfDD214_0]");
+        By ddServiceBranch = By.CssSelector("select[id$=ddlServiceBranch]");
+        By txtEntryDate = By.CssSelector("input[id$=txtServiceEntryDate]");
+        By txtSeparationDate = By.CssSelector("input[id$=txtServiceSeparationDate]");
+        By ddCharacterOfService = By.CssSelector("select[id$=ddlDischargeStatus]");
+        By ddReasonForSeparation = By.CssSelector("select[id$=ddlReasonForSeparation]");
+        By rbGovernmentShutdownNo = By.CssSelector("label[for$=rblSepDueToGovShutdown_1]");
+        By ddPayGrade = By.CssSelector("select[id$=ddlPayGrade]");
+        By txtAccruedDaysOfLeave = By.CssSelector("input[id$=txtAccuredDaysOfLeave]");
+        By txtLostDays = By.CssSelector("input[id$=txtLostDays]");
+        By rbPhysicalDisabilityNo = By.CssSelector("label[for$=rblDischargePhysicalDisability_1]");
+        By rbMilitaryRetireeNo = By.CssSelector("label[for$=rblMilitaryRetiree_1]");
+        By rbCompletedFirstTermNo = By.CssSelector("label[for$=rblCompletedFirstFullTermDuty_1]");
+        By txtYearsAgreed = By.CssSelector("input[id$=txtYearsOfServiceAgreedTo]");
+        By txtYearsCompleted = By.CssSelector("input[id$=ctl00_Main_content_Wizard1_ucMilitaryService_txtYearsOfServiceCompleted]");
 
-        By rbAppliedForEduAllowanceNo = By.CssSelector("label[for='ctl00_Main_content_Wizard1_ucMilitaryService_rblReceivingAnEducationalAllowance_1']");
-        By rbAppliedForAllowanceNo = By.CssSelector("label[for='ctl00_Main_content_Wizard1_ucMilitaryService_rblSubsistenceVocRehabTraining_1']");
-        By rbAppliedForAssistanceNo = By.CssSelector("label[for='ctl00_Main_content_Wizard1_ucMilitaryService_rblWarOrphanWidowsEducationAllowance_1']");
-
+        By rbAppliedForEduAllowanceNo = By.CssSelector("label[for$=rblReceivingAnEducationalAllowance_1]");
+        By rbAppliedForAllowanceNo = By.CssSelector("label[for$=rblSubsistenceVocRehabTraining_1]");
+        By rbAppliedForAssistanceNo = By.CssSelector("label[for$=rblWarOrphanWidowsEducationAllowance_1]");
 
         public UI_060_MilitaryService()
         {

@@ -9,8 +9,8 @@ namespace Sel.Pages
 {
     public class UI_030_UnemploymentInsuranceCompemsation
     {
-        By rbFilingUI = By.CssSelector("label[for='ctl00_Main_content_radFilingUI_0']");
-        By btnNext = By.Id("ctl00_Main_content_btnNext");
+        By rbFilingUI = By.CssSelector("label[for$=radFilingUI_0]");
+        By btnNext = By.CssSelector("input[id$=btnNext]");
 
         public UI_030_UnemploymentInsuranceCompemsation()
         {

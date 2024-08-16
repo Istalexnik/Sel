@@ -10,9 +10,9 @@ namespace Sel.Pages
 {
     public class UI_045_WorkHistoryVerification
     {
-        By rbDidYouWorkYes = By.CssSelector("label[for='ctl00_Main_content_Wizard1_rblWorkHistoryVerify_0']");
-        By rbDidYouWorkNo = By.CssSelector("label[for='ctl00_Main_content_Wizard1_rblWorkHistoryVerify_1']");
-        By btnNext = By.Id("ctl00_Main_content_Wizard1_StepNavigationTemplateContainerID_StepNextButton");
+        By rbDidYouWorkYes = By.CssSelector("label[for$=rblWorkHistoryVerify_0]");
+        By rbDidYouWorkNo = By.CssSelector("label[for$=rblWorkHistoryVerify_1]");
+        By btnNext = By.CssSelector("input[id$=StepNextButton]");
 
         public UI_045_WorkHistoryVerification()
         {
@@ -26,8 +26,6 @@ namespace Sel.Pages
             {
                 rbDidYouWorkYes.Click();
             }
-            rbDidYouWorkYes.Click();
-
 
             btnNext.Click();
 

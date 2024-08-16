@@ -13,7 +13,7 @@ namespace Sel.Pages
     {
 
 
-        By btnAgree = By.Id("ctl00_Main_content_btnAgree");
+        By btnAgree = By.CssSelector("input[id$=btnAgree");
 
         public UI_015_EqualOpportunity()
         {

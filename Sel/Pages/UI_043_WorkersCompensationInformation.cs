@@ -9,8 +9,8 @@ namespace Sel.Pages
 {
     public class UI_043_WorkersCompensationInformation
     {
-        By rbReceivedWorkCompNo = By.CssSelector("label[for='ctl00_Main_content_Wizard1_ucWorkersCompensation_rblWCReceived_1']");
-        By btnNext = By.Id("ctl00_Main_content_Wizard1_StepNavigationTemplateContainerID_StepNextButton");
+        By rbReceivedWorkCompNo = By.CssSelector("label[for$=rblWCReceived_1]");
+        By btnNext = By.CssSelector("input[id$=StepNextButton]");
 
         public UI_043_WorkersCompensationInformation()
         {

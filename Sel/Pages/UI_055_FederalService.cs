@@ -12,48 +12,48 @@ namespace Sel.Pages
     public class UI_055_FederalService
     {
 
-        By rbFederalCivilianEmployeeNo = By.CssSelector("label[for='ctl00_Main_content_Wizard1_rblFederalCivilianEmployee_1']");
-        By rbFederalCivilianEmployeeYes = By.CssSelector("label[for='ctl00_Main_content_Wizard1_rblFederalCivilianEmployee_0']");
-        By rbInHostStateYes = By.CssSelector("label[for='ctl00_Main_content_Wizard1_rblFederalCivilianEmployeeHostState_0']");
-        By btnOk = By.Id("btn-dialog-save");
-        By rbInAnotherStateNo = By.CssSelector("label[for='ctl00_Main_content_Wizard1_rblFederalCivilianEmployeeAnotherState_1']");
-        By rbWagesAssignedOtherStateNo = By.CssSelector("label[for='ctl00_Main_content_Wizard1_rblHasOtherStateWages_1']");
-        By rbOutsideOfUSNo = By.CssSelector("label[for='ctl00_Main_content_Wizard1_rblLastOfficialDutyStationOutsideUS_1']");
-        By txtSF50 = By.Id("ctl00_Main_content_Wizard1_txtLastOfficialDutyStationLocation");
-        By btnNext = By.Id("ctl00_Main_content_Wizard1_StepNavigationTemplateContainerID_StepNextButton");
+        By rbFederalCivilianEmployeeNo = By.CssSelector("label[for$=rblFederalCivilianEmployee_1]");
+        By rbFederalCivilianEmployeeYes = By.CssSelector("label[for$=rblFederalCivilianEmployee_0]");
+        By rbInHostStateYes = By.CssSelector("label[for$=rblFederalCivilianEmployeeHostState_0]");
+        By btnOk = By.CssSelector("input[id=btn-dialog-save]");
+        By rbInAnotherStateNo = By.CssSelector("label[for$=rblFederalCivilianEmployeeAnotherState_1]");
+        By rbWagesAssignedOtherStateNo = By.CssSelector("label[for$=rblHasOtherStateWages_1]");
+        By rbOutsideOfUSNo = By.CssSelector("label[for$=rblLastOfficialDutyStationOutsideUS_1]");
+        By txtSF50 = By.CssSelector("input[id$=txtLastOfficialDutyStationLocation]");
+        By btnNext = By.CssSelector("input[id$=StepNextButton]");
 
-        By rbAddFederalEmployerYes = By.CssSelector("label[for='ctl00_Main_content_Wizard1_ucFederalCivilEmploymentHistory_rbAddNewEmp_0']");
-        By rbAddFederalEmployerNo = By.CssSelector("label[for='ctl00_Main_content_Wizard1_ucFederalCivilEmploymentHistory_rbAddNewEmp_1']");
+        By rbAddFederalEmployerYes = By.CssSelector("label[for$=rbAddNewEmp_0]");
+        By rbAddFederalEmployerNo = By.CssSelector("label[for$=rbAddNewEmp_1]");
 
-        By spanFIC = By.ClassName("ui-icon-triangle-1-s");
-        By inputFIC = By.Id("cmbCustomFIC");
-        By ddDestinationCode = By.Id("ctl00_Main_content_Wizard1_ucFederalGovernmentEmployment_ddlDestCodes");
-        By rbOtherEmploymentNo = By.CssSelector("label[for='ctl00_Main_content_Wizard1_ucFederalGovernmentEmployment_rblInterveningEmploymentSinceSeparation_1']");
-        By ddStateOfEmployment = By.Id("ctl00_Main_content_Wizard1_ucFederalGovernmentEmployment_ddlStateOfEmployment");
-        By txtCity = By.Id("ctl00_Main_content_Wizard1_ucFederalGovernmentEmployment_txtOutofCountryCity");
-        By txtCity2 = By.Id("ctl00_Main_content_Wizard1_ucFederalGovernmentEmployment_txtCityOfEmployment");
+        By spanFIC = By.CssSelector("span[class=ui-icon-triangle-1-s]");
+        By inputFIC = By.CssSelector("input[id=cmbCustomFIC]");
+        By ddDestinationCode = By.CssSelector("select[id$=ddlDestCodes]");
+        By rbOtherEmploymentNo = By.CssSelector("label[for=rblInterveningEmploymentSinceSeparation_1]");
+        By ddStateOfEmployment = By.CssSelector("select[id$=ddlStateOfEmployment]");
+        By txtCity = By.CssSelector("input[id$=txtOutofCountryCity]");
+        By txtCity2 = By.CssSelector("input[id$=txtCityOfEmployment]");
         
-        By rbForm8Yes = By.CssSelector("label[for='ctl00_Main_content_Wizard1_ucFederalGovernmentEmployment_rblReceiveStandardForm8_0']");
-        By rbForm50Yes = By.CssSelector("label[for='ctl00_Main_content_Wizard1_ucFederalGovernmentEmployment_rblReceiveStandardForm50_0']");
-        By txtWorkBeginDate = By.Id("ctl00_Main_content_Wizard1_ucFederalGovernmentEmployment_txtDateBeganWork");
-        By txtWorkEndDate = By.Id("ctl00_Main_content_Wizard1_ucFederalGovernmentEmployment_txtLastDayWorked");
-        By txtSearationpDate = By.Id("ctl00_Main_content_Wizard1_ucFederalGovernmentEmployment_txtSeparationDate");
-        By ddSeparationReason = By.Id("ctl00_Main_content_Wizard1_ucFederalGovernmentEmployment_ddlReasonForSeparation");
-        By rbGovernmentShutdownNo = By.CssSelector("label[for='ctl00_Main_content_Wizard1_ucFederalGovernmentEmployment_rblSepDueToGovShutdown_1']");
-        By ddEmployerCategory = By.Id("ctl00_Main_content_Wizard1_ucFederalGovernmentEmployment_ddlEmployerNAICS");
-        By ddOccupation = By.Id("ctl00_Main_content_Wizard1_ucFederalGovernmentEmployment_ddlPositionOccGroupCode");
-        By txtWagesQ1 = By.Id("ctl00_Main_content_Wizard1_ucFederalGovernmentEmployment_txtWagesQuarter1");
-        By txtWeeksQ1 = By.Id("ctl00_Main_content_Wizard1_ucFederalGovernmentEmployment_txtQ1CreditWeeks");
-        By txtWagesQ2 = By.Id("ctl00_Main_content_Wizard1_ucFederalGovernmentEmployment_txtWagesQuarter2");
-        By txtWeeksQ2 = By.Id("ctl00_Main_content_Wizard1_ucFederalGovernmentEmployment_txtQ2CreditWeeks");
-        By txtWagesQ3 = By.Id("ctl00_Main_content_Wizard1_ucFederalGovernmentEmployment_txtWagesQuarter3");
-        By txtWeeksQ3 = By.Id("ctl00_Main_content_Wizard1_ucFederalGovernmentEmployment_txtQ3CreditWeeks");
-        By txtWagesQ4 = By.Id("ctl00_Main_content_Wizard1_ucFederalGovernmentEmployment_txtWagesQuarter4");
-        By txtWeeksQ4 = By.Id("ctl00_Main_content_Wizard1_ucFederalGovernmentEmployment_txtQ4CreditWeeks");
-        By txtWagesQ5 = By.Id("ctl00_Main_content_Wizard1_ucFederalGovernmentEmployment_txtWagesQuarter5");
-        By txtWagesQ6 = By.Id("ctl00_Main_content_Wizard1_ucFederalGovernmentEmployment_txtWagesQuarter6");
-        By rbDidYouWorkInNEAfterThatNo = By.CssSelector("label[for='ctl00_Main_content_Wizard1_ucFederalGovernmentEmployment_rblWorkedInStateAfterFederalEmployment_1']");
-        By rbDidYouWorkAnywhereAfterThatNo = By.CssSelector("label[for='ctl00_Main_content_Wizard1_ucFederalGovernmentEmployment_rblOtherEmploymentLastNMonths_1']");
+        By rbForm8Yes = By.CssSelector("label[for$=rblReceiveStandardForm8_0]");
+        By rbForm50Yes = By.CssSelector("label[for$=rblReceiveStandardForm50_0]");
+        By txtWorkBeginDate = By.CssSelector("input[id$=txtDateBeganWork]");
+        By txtWorkEndDate = By.CssSelector("input[id$=txtLastDayWorked]");
+        By txtSearationpDate = By.CssSelector("input[id$=txtSeparationDate]");
+        By ddSeparationReason = By.CssSelector("select[id$=ddlReasonForSeparation]");
+        By rbGovernmentShutdownNo = By.CssSelector("label[for$=rblSepDueToGovShutdown_1]");
+        By ddEmployerCategory = By.CssSelector("select[id$=ddlEmployerNAICS]");
+        By ddOccupation = By.CssSelector("select[id$=ddlPositionOccGroupCode]");
+        By txtWagesQ1 = By.CssSelector("input[id$=txtWagesQuarter1");
+        By txtWeeksQ1 = By.CssSelector("input[id$=txtQ1CreditWeeks]");
+        By txtWagesQ2 = By.CssSelector("input[id$=txtWagesQuarter2]");
+        By txtWeeksQ2 = By.CssSelector("input[id$=txtQ2CreditWeeks]");
+        By txtWagesQ3 = By.CssSelector("input[id$=txtWagesQuarter3]");
+        By txtWeeksQ3 = By.CssSelector("input[id$=txtQ3CreditWeeks]");
+        By txtWagesQ4 = By.CssSelector("input[id$=txtWagesQuarter4]");
+        By txtWeeksQ4 = By.CssSelector("input[id$=txtQ4CreditWeeks]");
+        By txtWagesQ5 = By.CssSelector("input[id$=txtWagesQuarter5]");
+        By txtWagesQ6 = By.CssSelector("input[id$=txtWagesQuarter6]");
+        By rbDidYouWorkInNEAfterThatNo = By.CssSelector("label[for$=rblWorkedInStateAfterFederalEmployment_1]");
+        By rbDidYouWorkAnywhereAfterThatNo = By.CssSelector("label[for$=rblOtherEmploymentLastNMonths_1]");
 
 
         public UI_055_FederalService()

@@ -10,12 +10,9 @@ namespace Sel.Pages
 {
     public class UI_035_WelcomePage
     {
-        By titleWelcome = By.XPath("(//h2[text()='Welcome to DC Networks'])");
-
-        By btnNext = By.Id("ctl00_Main_content_Wizard1_StartNavigationTemplateContainerID_StartNextButton");
-
-        By btnLogOut = By.Id("ctl00_hlNotRegistered2");
-        By btnHome = By.Id("ctl00_Main_content_Button2");
+        By btnNext = By.CssSelector("input[id$=StartNextButton]");
+        By btnLogOut = By.CssSelector("input[id$=hlNotRegistered2]");
+        By btnHome = By.CssSelector("input[id$=ctl00_Main_content_Button2]");
 
 
         public UI_035_WelcomePage()

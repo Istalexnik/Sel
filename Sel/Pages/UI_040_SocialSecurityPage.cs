@@ -11,14 +11,14 @@ namespace Sel.Pages
 {
     public class UI_040_SocialSecurityPage 
     {
-        By txtSSN = By.Id("ctl00_Main_content_Wizard1_ucSSN_txtSSN");
-        By txtSSNReenter = By.Id("ctl00_Main_content_Wizard1_ucSSN_txtSSNReenter");
-        By btnNext = By.Id("ctl00_Main_content_Wizard1_StepNavigationTemplateContainerID_StepNextButton");      
+        By txtSSN = By.CssSelector("input[id$=txtSSN]");
+        By txtSSNReenter = By.CssSelector("input[id$=txtSSNReenter]");
+        By btnNext = By.CssSelector("input[id$=StepNextButton]");      
 
         public UI_040_SocialSecurityPage()
         {
             txtSSN.SendKeys(TestData.SSN);
-
+            Thread.Sleep(100);
             txtSSNReenter.SendKeys(TestData.SSN);
 
             btnNext.Click();

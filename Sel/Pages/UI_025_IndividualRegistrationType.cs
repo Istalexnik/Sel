@@ -9,7 +9,7 @@ namespace Sel.Pages
 {
     public class UI_025_IndividualRegistrationType 
     {
-        By lnkRegistration = By.Id("ctl00_Main_content_lnkCompleteHeader");
+        By lnkRegistration = By.CssSelector("a[id$=lnkCompleteHeader]");
 
         public UI_025_IndividualRegistrationType()
         {

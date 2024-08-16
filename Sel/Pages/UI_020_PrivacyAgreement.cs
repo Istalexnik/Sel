@@ -9,7 +9,7 @@ namespace Sel.Pages
 {
     public class UI_020_PrivacyAgreement
     {
-        By btnAgree = By.Id("ctl00_Main_content_ucPrivacyAgreement_btnAgree");
+        By btnAgree = By.CssSelector("input[id$=btnAgree]");
 
 
         public UI_020_PrivacyAgreement()

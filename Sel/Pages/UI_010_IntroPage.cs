@@ -10,7 +10,7 @@ namespace Sel.Pages
 {
     public class UI_010_IntroPage
     {
-         By btnRegistration = By.Id("btnIndRegistration");
+         By btnRegistration = By.CssSelector("a[id=btnIndRegistration], a[id=Loginintro_regagree]");
 
 
         public UI_010_IntroPage()
