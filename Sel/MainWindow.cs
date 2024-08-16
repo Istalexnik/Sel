@@ -218,7 +218,7 @@ namespace Sel
                 Content = "Start",
                 Width = 510,
                 Height = 50,
-                Background = new SolidColorBrush(Color.FromArgb(255, 218, 252, 218)),
+                Background = new SolidColorBrush(Color.FromArgb(255, 250, 255, 250)),
                 //Margin = new Thickness(1),
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Bottom
@@ -324,7 +324,7 @@ namespace Sel
 
             if (!string.IsNullOrEmpty(url) && selectedPages != null)
             {
-                await Task.Run(() => SeleniumHelper.RunSeleniumTest(url, selectedPages));
+                await Task.Run(() => SeleniumBase.RunSeleniumTest(url, selectedPages));
                 MessageBox.Show("Selenium test completed!");
             }
             else
@@ -367,7 +367,7 @@ namespace Sel
 
         protected override void OnClosed(EventArgs e)
         {
-            SeleniumHelper.QuitDriver();
+            SeleniumBase.QuitDriver();
             base.OnClosed(e);
         }
     }

@@ -27,7 +27,7 @@ namespace Sel
         {
             return new List<Environment>
             {
-                new Environment("IA UAT", "https://uat-app-vos19000000-geosolinc.com/vosnet/default.aspx", "50031", "Iowa", "IA", "LAXMI JT LLC", "Tampa Toyota"),
+                new Environment("IA UAT", "https://uat-app-vos19000000-gus.geosolinc.com/vosnet/default.aspx", "50031", "Iowa", "IA", "LAXMI JT LLC", "Tampa Toyota"),
                 new Environment("IA CUAT", "https://cuat-app-vos19000000-geosolinc.com/vosnet/default.aspx", "50031", "Iowa", "IA", "Publix", "Tampa Toyota"),
                 new Environment("IA QA", "https://qa-app-vos19000000-geosolinc.com/vosnet/default.aspx", "50031", "Iowa", "IA", "Target", "Amazon Com Services Inc"),
                 new Environment("IA STAGING", "https://staging-app-vos19000000.geosolinc.com/vosnet/default.aspx", "50031", "Iowa", "IA", "Target", "Amazon Web Services, Inc."),
