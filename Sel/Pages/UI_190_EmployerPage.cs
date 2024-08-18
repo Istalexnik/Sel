@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Sel.Data;
 using System.Threading;
+using Sel.Utilities;
 
 
 namespace Sel.Pages
@@ -137,17 +138,17 @@ namespace Sel.Pages
 
             txtPhone3.Clear().SendKeys(TestData.Phone.Substring(6, 4));
 
-            rbDCGovermentAgencyNo.IsPresent()?.Click();
+            rbDCGovermentAgencyNo.Click();
 
             rbLastEmployerYes.WaitForElementToBeClickable().Click();
 
             Thread.Sleep(4000);
 
-            rbEarnAtLeastYes.IsPresent()?.WaitForElementToBeClickable().Click();
+            rbEarnAtLeastYes.WaitForElementToBeClickable().Click();
 
             Thread.Sleep(4000);
 
-            rbTemporaryEmployerNo.IsPresent()?.JSClick();
+            rbTemporaryEmployerNo.Click();
 
             if (string.IsNullOrEmpty(txtEmployerNameOnCheckStub.WaitForElementToBeClickable().GetText()))
             {
@@ -160,7 +161,7 @@ namespace Sel.Pages
 
             ddFullOrPartTime.SelectDropdownByIndex("1");
 
-            ddScheduleOfWork.IsPresent()?.SelectDropdownByIndex("1");
+            ddScheduleOfWork.SelectDropdownByIndex("1");
 
             ddHours.SelectDropdownByIndex("1");
 
@@ -176,72 +177,57 @@ namespace Sel.Pages
 
             txtearningsThisWeek.SendKeys("0");
 
-            txtHoursThisWeek.IsPresent()?.SendKeys("0");
+            txtHoursThisWeek.SendKeys("0");
 
-            try
-            {
-                ddSeparationReason.SelectDropdownByPartialText("Lay").WaitForElementToBeStaleAndRefind();
-            }
-            catch(WebDriverTimeoutException)
-            {
-              //UCFE doesn't have refresh after separation entry so just catch the exception and move on
-            }
-            //if (!TestData.Type.Contains(3))
-            //{
-            //    ddSeparationReason.WaitForElementToBeStaleAndRefind();
-            //}
+            ddSeparationCategory.SelectDropdownByText("Lay", true);
 
+            ddReasonOfLayoff.SelectDropdownByValue("1");
 
-
-            ddSeparationCategory.IsPresent()?.SelectDropdownByPartialText("Lay").WaitForElementToBeStaleAndRefind();
-            
-            ddReasonOfLayoff.IsPresent()?.SelectDropdownByValue("1");
-
-            rbVoluntiryLayoffNo.IsPresent()?.Click();
+            rbVoluntiryLayoffNo.Click();
             
             txtWorkEndDate.SendKeys(endDate);
 
-            rbRecallNo.IsPresent()?.Click();
+            rbRecallNo.Click();
 
-            rbFamilyResponsobilitiesNo.IsPresent()?.Click();
+            rbFamilyResponsobilitiesNo.Click();
 
             rbEducationalNo.Click();
 
-            rbSchoolBusNo.IsPresent()?.Click();
+            rbSchoolBusNo.Click();
 
-            rbOfficerRelativeNo.IsPresent()?.Click();
+            rbOfficerRelativeNo.Click();
 
             rbTransferOutOfCountryNo.Click();
 
-            rbSpouseOfEmployerNo.IsPresent()?.Click();
+            rbSpouseOfEmployerNo.Click();
 
-            rbLackOfTransportationNo.IsPresent()?.Click();
+            rbLackOfTransportationNo.Click();
 
             ifrJobDuties.SendTextToIFrame(txtJobDuties, "Test");
 
             rbSeveranceNo.Click();
 
-            rbVacationNo.IsPresent()?.Click();
+            rbVacationNo.Click();
 
-            rbHolidayPayNo.IsPresent()?.Click();
+            rbHolidayPayNo.Click();
 
-            rbSickPayNo.IsPresent()?.Click();
+            rbSickPayNo.Click();
 
-            rbBonusPayNo.IsPresent()?.Click();
+            rbBonusPayNo.Click();
 
-            rbWarnPaymentNo.IsPresent()?.Click();
+            rbWarnPaymentNo.Click();
 
-            rbWagesInLieuNo.IsPresent()?.Click();
+            rbWagesInLieuNo.Click();
 
             rbPensionNo.Click();
 
-            rb401KNo.IsPresent()?.Click();
+            rb401KNo.Click();
 
-            rbMilitaryDisabilityNo.IsPresent()?.Click();
+            rbMilitaryDisabilityNo.Click();
 
-            rbWorkersCompensationAreNo.IsPresent()?.Click();
+            rbWorkersCompensationAreNo.Click();
 
-            rbWorkersCompensationDidNo.IsPresent()?.Click();
+            rbWorkersCompensationDidNo.Click();
 
            //Thread.Sleep(30000);
 

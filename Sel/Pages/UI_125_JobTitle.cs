@@ -5,32 +5,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Sel.SeleniumExtensions;
+using static Sel.Utilities.SeleniumExtensions;
+using Sel.Utilities;
 
 
 namespace Sel.Pages
 {
     public class UI_125_JobTitle
     {
-        By txtJobTitle = By.Id("ctl00_Main_content_ucJobTitleToOcc_txtJobTitle");
+        By txtJobTitle = By.CssSelector("input[id$=txtJobTitle]");
 
-        By txtSuggestions = By.Id("ac_results");
+        By txtSuggestions = By.CssSelector("div[id=ac_results]");
 
-        By ddJobOccupation = By.Id("ctl00_Main_content_ucJobTitleToOcc_ONETDropDownList");
+        By ddJobOccupation = By.CssSelector("select[id$=ONETDropDownList]");
 
-        By rbWorkedPartTimeNo = By.CssSelector("label[for='ctl00_Main_content_ucJobTitleToOcc_rbl18MoPartTime_1']");
+        By rbWorkedPartTimeNo = By.CssSelector("label[for$=rbl18MoPartTime_1]");
 
-        By btnNext = By.Id("ctl00_Main_content_btnNext");
+        By btnNext = By.CssSelector("input[id$=btnNext]");
 
         public UI_125_JobTitle()
         {
-            if (new[] { "PFL" }.Any(site => TestData.Site.Contains(site))) { return; }
+            if (new[] { "PFL" }.Contains(TestData.StateAbbreviation!)) return;
 
-            txtJobTitle.EnterText("Test", txtSuggestions);
 
-            WaitForSuggestions(ddJobOccupation).SelectDropdownByIndex("1");
+                txtJobTitle.EnterText("Test", txtSuggestions);
 
-            rbWorkedPartTimeNo.IsPresent()?.Click();
+                WaitForSuggestions(ddJobOccupation).SelectDropdownByIndex("1");
+
+                rbWorkedPartTimeNo.Click();
 
             btnNext.Click();
         }

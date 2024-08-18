@@ -6,8 +6,10 @@ using Sel.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using OpenQA.Selenium.Internal;
+using System.Diagnostics;
 
-namespace Sel
+namespace Sel.Utilities
 {
     public static class SeleniumExtensions
     {
@@ -167,32 +169,44 @@ namespace Sel
             {
                 wait.Until(d =>
                 {
-                    IWebElement container = d.FindElement(locator);
-
-                    // Check if the container is a <select> dropdown
-                    if (container.TagName.ToLower() == "select")
+                    try
                     {
-                        var optionElements = container.FindElements(By.TagName("option"));
-                        return optionElements.Count > 1; // More than one option means suggestions are present
-                    }
-                    // Check if the container is a div structure for suggestions
-                    else if (container.GetAttribute("class").Contains("ac_results"))
-                    {
-                        var suggestionItems = container.FindElements(By.TagName("li"));
-                        return suggestionItems.Count > 0; // Presence of list items means suggestions are present
-                    }
+                        // Attempt to locate the container element
+                        IWebElement container = d.FindElement(locator);
 
-                    return false; // Default to false if neither conditions met
+                        // Check if the container is a <select> dropdown
+                        if (container.TagName.ToLower() == "select")
+                        {
+                            var optionElements = container.FindElements(By.TagName("option"));
+                            return optionElements.Count > 1; // More than one option means suggestions are present
+                        }
+                        // Check if the container is a div structure for suggestions
+                        else if (container.GetAttribute("class").Contains("ac_results"))
+                        {
+                            var suggestionItems = container.FindElements(By.TagName("li"));
+                            return suggestionItems.Count > 0; // Presence of list items means suggestions are present
+                        }
+
+                        return false; // Default to false if neither condition is met
+                    }
+                    catch (NoSuchElementException)
+                    {
+                        // If the element is not found, return false and wait until the condition is met
+                        return false;
+                    }
+                    catch (StaleElementReferenceException)
+                    {
+                        // If the element becomes stale, return false and retry
+                        return false;
+                    }
                 });
             }
-            catch (WebDriverTimeoutException)
+            catch (WebDriverTimeoutException ex)
             {
-                throw new InvalidOperationException($"Suggestions did not appear for the element with locator {locator} within the given wait time.");
+                // Handle the timeout if the condition is not met within the wait period
+                Debug.WriteLine($"Element not found or condition not met: {ex.Message}");
             }
-            catch (NoSuchElementException)
-            {
-                throw new NoSuchElementException(string.Format(ErrorMessages["ElementNotFound"], locator, "WaitForSuggestionsToAppear()"));
-            }
+
 
             return locator;
         }
@@ -213,7 +227,7 @@ namespace Sel
         /// <param name="locator">The By locator for the element.</param>
         public static By JSClick(this By locator)
         {
-                    var js = (IJavaScriptExecutor)Driver;
+            var js = (IJavaScriptExecutor)Driver;
             try
             {
                 IWebElement element = Driver.FindElement(locator);
@@ -236,42 +250,40 @@ namespace Sel
         /// <param name="locator">The By locator for the element.</param>
         public static By Click(this By locator)
         {
+            if (Driver.FindElements(locator).Count == 0) return locator;
+
             try
             {
-                //Driver.FindElement(locator).Click();
-                locator.JSClick();
-            }
-            catch (NoSuchElementException)
-            {
-                throw new NoSuchElementException(string.Format(ErrorMessages["ElementNotFound"], locator, "Click()"));
+                Driver.FindElement(locator).Click();
             }
             catch (StaleElementReferenceException)
             {
                 locator.WaitForElementToBeStaleAndRefind().Click();
             }
-            //catch (ElementNotInteractableException)
-            //{
-            //    locator.JSClick();
-            //}
+            catch (ElementNotInteractableException)
+            {
+                locator.JSClick();
+            }
             return locator;
         }
+
 
         /// <summary>
         /// Checks if an element specified by the provided locator is present in the DOM.
         /// </summary>
         /// <param name="locator">The By locator for the element.</param>
         /// <returns>Returns the locator if the element is present, otherwise null.</returns>
-        public static By? IsPresent(this By locator)
-        {
-            if (Driver.FindElements(locator).Count > 0)
-            {
-                return locator;
-            }
-            else
-            {
-                return null;
-            }
-        }
+        //public static By? IsPresent(this By locator)
+        //{
+        //    if (Driver.FindElements(locator).Count > 0)
+        //    {
+        //        return locator;
+        //    }
+        //    else
+        //    {
+        //        return null;
+        //    }
+        //}
 
         /// <summary>
         /// Checks if the element specified by the locator is present.
@@ -282,9 +294,9 @@ namespace Sel
 
         public static bool IsClickable(this By locator)
         {
-            return Driver.FindElements(locator).Count > 0 
-                && Driver.FindElement(locator).Displayed 
-                && Driver.FindElement(locator).Enabled ;
+            return Driver.FindElements(locator).Count > 0
+                && Driver.FindElement(locator).Displayed
+                && Driver.FindElement(locator).Enabled;
         }
 
         public static By? IsEnabled(this By locator)
@@ -362,9 +374,9 @@ namespace Sel
             {
                 throw new NoSuchElementException(string.Format(ErrorMessages["ElementNotFound"], locator, "SendKeys()"));
             }
-            catch(ElementNotInteractableException)
+            catch (ElementNotInteractableException)
             {
-                
+
             }
             return locator;
         }
@@ -459,7 +471,7 @@ namespace Sel
                     {
                         if (!element.Selected)
                         {
-                           element.Click();
+                            element.Click();
                         }
                     }
                     catch (WebDriverTimeoutException)
@@ -488,44 +500,44 @@ namespace Sel
 
 
         /// <summary>
-        /// Selects an option from a dropdown element based on visible text.
+        /// Selects an option from a dropdown element based on visible text or partial text.
         /// </summary>
         /// <param name="locator">The By locator for the dropdown element.</param>
-        /// <param name="text">The visible text of the option to be selected.</param>
+        /// <param name="text">The visible text or partial text of the option to be selected.</param>
+        /// <param name="usePartialText">Optional. Indicates whether to use partial text for selection. Default is false.</param>
+        /// <returns>Returns the original locator.</returns>
         /// <exception cref="NoSuchElementException">Thrown if the dropdown element specified by the locator is not found.</exception>
         /// <exception cref="WebDriverException">Thrown if there is an error in the WebDriver, such as if the option with the given text is not found in the dropdown.</exception>
-        public static By SelectDropdownByText(this By locator, string text)
+        public static By SelectDropdownByText(this By locator, string text, bool usePartialText = false)
         {
+            if (Driver.FindElements(locator).Count == 0) return locator;
+
             var dropdown = new SelectElement(Driver.FindElement(locator));
-            dropdown.SelectByText(text);
-            return locator;
-        }
 
-        /// <summary>
-        /// Selects the first dropdown option that contains the provided partial text.
-        /// </summary>
-        /// <param name="locator">The By locator for the dropdown element.</param>
-        /// <param name="partialText">The substring to search for in the dropdown options.</param>
-        /// <returns>Returns the original locator.</returns>
-        public static By SelectDropdownByPartialText(this By locator, string partialText)
-        {
-            IWebElement dropdownElement = Driver.FindElement(locator);
-            var dropdown = new SelectElement(dropdownElement);
-
-            foreach (var option in dropdown.Options)
+            if (usePartialText)
             {
-                if (option.Text.Contains(partialText))
+                foreach (var option in dropdown.Options)
                 {
-                    option.Click();
-                    break; // Exit the loop once the first match is found and selected
+                    if (option.Text.Contains(text))
+                    {
+                        option.Click();
+                        break; // Exit the loop once the first match is found and selected
+                    }
                 }
+            }
+            else
+            {
+                dropdown.SelectByText(text);
             }
 
             return locator;
         }
 
+
         public static By SelectDropdownByIndex(this By locator, string index)
         {
+            if (Driver.FindElements(locator).Count == 0) return locator;
+
             var dropdown = new SelectElement(Driver.FindElement(locator));
             dropdown.SelectByIndex(int.Parse(index));
             return locator;
@@ -533,6 +545,8 @@ namespace Sel
 
         public static By SelectDropdownByValue(this By locator, string? value)
         {
+            if (Driver.FindElements(locator).Count == 0) return locator;
+
             var dropdown = new SelectElement(Driver.FindElement(locator));
             dropdown.SelectByValue(value);
             return locator;
@@ -548,7 +562,7 @@ namespace Sel
         {
             string originalWindowHandle = Driver.CurrentWindowHandle;
 
-            SwitchWindow(locator);
+            locator.SwitchWindow();
 
             Driver.Close();
             Driver.SwitchTo().Window(originalWindowHandle);

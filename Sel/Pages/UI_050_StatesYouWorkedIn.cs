@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Sel.Utilities;
 
 namespace Sel.Pages
 {
@@ -35,7 +36,7 @@ namespace Sel.Pages
 
         public UI_050_StatesYouWorkedIn()
         {
-            if (!rbWorkedInTwoStatesNo.FindIt()) { return; }
+            if (!rbWorkedInTwoStatesNo.FindIt()) return;
 
             if (!TestData.Type.Contains(4))
             {

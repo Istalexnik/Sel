@@ -1,4 +1,5 @@
 ﻿using Sel.Data;
+using Sel.Enums;
 using Sel.Utilities;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,6 @@ namespace Sel.Data
     public static class TestData
     {
         public static int[] Type { get; set; } = {};
-        public static string Site { get; set; } = "";
         public static string SSN { get; set; } = "";
         public static string? Employer1 { get; set; } = "";
         public static string? Employer2 { get; set; } = "";
@@ -27,7 +27,9 @@ namespace Sel.Data
         public static string WorkEndDate1 { get; set; } = "";
         public static string WorkBeginDate2 { get; set; } = "";
         public static string WorkEndDate2 { get; set; } = "";
+        public static string? StateName { get; set; }
         public static string? StateAbbreviation { get; set; }
+        public static List<PageType>? SelectedPages { get; set; }
         public static string? Url { get; set; } = "";
         public static string Username { get; set; } = "";
         public static string Password { get; set; } = "Hrjt2345^^^^^";

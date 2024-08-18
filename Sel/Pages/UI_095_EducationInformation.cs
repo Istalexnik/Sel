@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Sel.Utilities;
 
 namespace Sel.Pages
 {
@@ -17,14 +18,14 @@ namespace Sel.Pages
 
         public UI_095_EducationInformation()
         {
-            if (new[] { "PFL" }.Any(site => TestData.Site.Contains(site))) { return; }
+            if (new[] { "PFL" }.Contains(TestData.StateAbbreviation!)) return;
 
 
-            ddHighestLevelEducation.IsPresent()?.SelectDropdownByIndex("1");
+            ddHighestLevelEducation.SelectDropdownByIndex("1");
 
-            ddAttendingSchool.IsPresent()?.SelectDropdownByValue("4");
+            ddAttendingSchool.SelectDropdownByValue("4");
 
-            rbPlansToAttendSchoolNo.IsPresent()?.Click();
+            rbPlansToAttendSchoolNo.Click();
 
             btnNext.Click();
 

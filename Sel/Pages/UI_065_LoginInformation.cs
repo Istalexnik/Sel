@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Sel.Data;
 using System.Threading;
+using Sel.Utilities;
 namespace Sel.Pages
 {
     public class UI_065_LoginInformation
@@ -29,6 +30,8 @@ namespace Sel.Pages
 
         public UI_065_LoginInformation()
         {
+            Helper.CheckPause(Enums.PageType.LoginInformation);
+
             txtUsername.SendKeys(TestData.Username);
 
             Thread.Sleep(300);
@@ -47,7 +50,7 @@ namespace Sel.Pages
 
             txtZip.WaitForElementToBeClickable().SendKeys(TestData.Zip);
             
-            rbAuthorizedToWork.IsPresent()?.Click();
+            rbAuthorizedToWork.Click();
 
             txtEmail.WaitForElementToBeClickable().SendKeys(TestData.Email);
 
@@ -55,15 +58,15 @@ namespace Sel.Pages
 
             txtDOB.SendKeys(TestData.DOB);
 
-            txtDOBConfirm.IsPresent()?.SendKeys(TestData.DOB);
+            txtDOBConfirm.SendKeys(TestData.DOB);
 
-            txtCityOfBirth.IsPresent()?.SendKeys("Tampa");
+            txtCityOfBirth.SendKeys("Tampa");
 
-            txtMothersName.IsPresent()?.SendKeys("Test");
+            txtMothersName.SendKeys("Test");
 
             rbGenderMail.Click();
 
-            rbBeenArrestedNo.IsPresent()?.Click();
+            rbBeenArrestedNo.Click();
 
             btnNext.Click();
 

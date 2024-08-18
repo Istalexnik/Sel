@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using Sel.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,9 @@ namespace Sel.Pages
         By btnNext = By.Id("ctl00_Main_content_btnNextMonetaryReview");
         public UI_200_BasePeriodEmploymentInformation()
         {
-            if (!btnNext.FindIt()) { return; }
+            if (!btnNext.FindIt()) return;
 
-            rbAgreeWithWages.IsPresent()?.Click();
+            rbAgreeWithWages.Click();
 
             btnNext.Click();
         }

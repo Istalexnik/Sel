@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using Sel.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace Sel.Pages
         public UI_220_BenefitsRightsInformation()
         {
        
-        if (!rbIWantToPrintLater.FindIt()) { return; }
+        if (!rbIWantToPrintLater.FindIt()) return;
 
             rbIWantToPrintLater.Click();
 

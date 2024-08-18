@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Sel.Utilities;
 
 namespace Sel.Pages
 {
@@ -34,9 +35,9 @@ namespace Sel.Pages
         By btnNext = By.Id("ctl00_Main_content_btnNext");
         public UI_115_MajorDisaster()
         {
-            if (new[] { "PFL" }.Any(site => TestData.Site.Contains(site))) { return; }
+            if (new[] { "PFL" }.Contains(TestData.StateAbbreviation!)) return;
 
-            if (!rbMajorDisasterNo.FindIt()) { return; }
+            if (!rbMajorDisasterNo.FindIt()) return;
 
             if (!TestData.Type.Contains(6))
             {
@@ -61,7 +62,7 @@ namespace Sel.Pages
                 rbStartNewPlaceNo.Click();
                 rbBreadWinnerNo.Click();
                 rbInjuryNo.Click();
-                rbFishermanNo.IsPresent()?.Click();
+                rbFishermanNo.Click();
                 rbAgriculturalSeasonalNo.Click();
             }
             btnNext.Click();

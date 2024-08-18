@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using Sel.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace Sel.Pages
 
         public UI_043_WorkersCompensationInformation()
         {
-            if (!rbReceivedWorkCompNo.FindIt()) { return; }
+            if (!rbReceivedWorkCompNo.FindIt()) return;
 
             rbReceivedWorkCompNo.Click();
 

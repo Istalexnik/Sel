@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using Sel.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -42,29 +43,29 @@ namespace Sel.Pages
         {
             rbPaymentMethodDC.Click();
 
-            cbAcknowledg.IsPresent()?.Click();
+            cbAcknowledg.Click();
 
-            cbAcknowledgLong.IsPresent()?.Click();
+            cbAcknowledgLong.Click();
 
-            chkIUnderstand.IsPresent()?.Click();
+            chkIUnderstand.Click();
 
-            btnOk.IsPresent()?.Click();
+            btnOk.Click();
 
-            linkDisclosure.IsPresent()?.Click().OpenAndCloseWindow();
+            linkDisclosure.Click().OpenAndCloseWindow();
 
-            chkPreferredPaymentMethod.IsPresent()?.Click();
+            chkPreferredPaymentMethod.Click();
 
-            chkDisclosured.IsPresent()?.Click();
+            chkDisclosured.Click();
 
-            chkConsent1099.IsPresent()?.Click();
+            chkConsent1099.Click();
 
-            rbPaperWeeklyCertsNo.IsPresent()?.Click();
+            rbPaperWeeklyCertsNo.Click();
 
-            rbFederalTaxYes.IsPresent()?.Click();
+            rbFederalTaxYes.Click();
 
-            rbStateTaxYes.IsPresent()?.Click();
+            rbStateTaxYes.Click();
 
-            rbSnapNo.IsPresent()?.Click();
+            rbSnapNo.Click();
 
             btnNext.Click();
         }

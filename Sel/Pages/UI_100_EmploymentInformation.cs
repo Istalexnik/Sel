@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Sel.Utilities;
 
 namespace Sel.Pages
 {
@@ -34,23 +35,23 @@ namespace Sel.Pages
 
         public UI_100_EmploymentInformation()
         {
-            if (new[] { "PFL" }.Any(site => TestData.Site.Contains(site))) { return; }
+            if (new[] { "PFL" }.Contains(TestData.StateAbbreviation!)) return;
 
-            if (!titleEmploymentInformation.FindIt()) { return; }
+            if (!titleEmploymentInformation.FindIt()) return;
 
             ddCurrentEmpStatus.SelectDropdownByValue("3");
 
-            //if (new[] { "AZ" }.Any(site => TestData.Site.Contains(site))) { 
+            //if (new[] { "AZ" }.Any(site => TestData.StateAbbreviation.Contains(site))) { 
             //    btnNext.Click();
             //    return;
             //}
 
 
-            ddTypeOfBusiness.IsPresent()?.SelectDropdownByIndex("1");
+            ddTypeOfBusiness.SelectDropdownByIndex("1");
 
-            ddUnempEligibilityStatus.IsPresent()?.SelectDropdownByIndex("1");
+            ddUnempEligibilityStatus.SelectDropdownByIndex("1");
 
-            if (new[] { "LA" }.Any(site => TestData.Site.Contains(site)))
+            if (new[] { "LA" }.Contains(TestData.StateAbbreviation!))
             {
                 ddUnempEligibilityStatus.WaitForElementToBeStaleAndRefind();
             }
@@ -58,17 +59,17 @@ namespace Sel.Pages
 
 
 
-            rbCovid19No.IsPresent()?.Click();
+            rbCovid19No.Click();
 
-            rbApprenticeshipNo.IsPresent()?.Click();
+            rbApprenticeshipNo.Click();
 
-            rbCertificationsNo.IsPresent()?.Click();
+            rbCertificationsNo.Click();
 
-            rbLookingForWorkYes.IsPresent()?.WaitForElementToBeClickable().Click();
+            rbLookingForWorkYes.WaitForElementToBeClickable().Click();
 
-            rbDomesticViolenceNo.IsPresent()?.Click();
+            rbDomesticViolenceNo.Click();
 
-            rbFarmworkerNo.IsPresent()?.Click();
+            rbFarmworkerNo.Click();
 
             btnNext.Click();
 

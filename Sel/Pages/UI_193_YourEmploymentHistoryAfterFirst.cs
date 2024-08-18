@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Sel.Utilities;
 
 namespace Sel.Pages
 {
@@ -18,7 +19,7 @@ namespace Sel.Pages
 
         public UI_193_YourEmploymentHistoryAfterFirst()
         {
-            if (!titleYourEmploymentHistory.FindIt()) { return; }
+            if (!titleYourEmploymentHistory.FindIt()) return;
 
             rbDidYouWorkForYes.Click();
 

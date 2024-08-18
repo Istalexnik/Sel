@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using Sel.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,19 +21,19 @@ namespace Sel.Pages
 
         public UI_090_CitizenshipAndDependents()
         {
-            if (!ddCitizenship.FindIt()) { return; }
+            if (!ddCitizenship.FindIt()) return;
 
-            rbDependents.IsPresent()?.Click();
+            rbDependents.Click();
 
-            ddHowManyDependents.IsPresent()?.SelectDropdownByIndex("1");
+            ddHowManyDependents.SelectDropdownByIndex("1");
 
-            ddMartialStatus.IsPresent()?.SelectDropdownByIndex("1");
+            ddMartialStatus.SelectDropdownByIndex("1");
 
             ddCitizenship.SelectDropdownByIndex("1");
 
             rbDisability.Click();
 
-            rbChildSupportDeductions.IsPresent()?.Click();
+            rbChildSupportDeductions.Click();
 
             btnNext.WaitForElementToBeClickable().Click();
 

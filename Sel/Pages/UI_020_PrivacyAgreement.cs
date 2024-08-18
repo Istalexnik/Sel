@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using Sel.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace Sel.Pages
 
         public UI_020_PrivacyAgreement()
         {
-            if (!btnAgree.FindIt()) { return; }
+            if (!btnAgree.FindIt()) return;
 
             btnAgree.Click();
         }

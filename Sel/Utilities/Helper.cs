@@ -1,34 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Sel.Data;
+using Sel.Enums;
+using Sel.GUI;
 using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 
 namespace Sel.Utilities
 {
-    public static class DataGenerator
+    public static class Helper
     {
         private static Random random = new Random();
 
-        public static string GenerateRandomLetters(int length, string LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+        public static string GenerateRandomLetters(int length, string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
         {
             StringBuilder result = new StringBuilder(length);
 
             for (int i = 0; i < length; i++)
             {
-                result.Append(LETTERS[random.Next(LETTERS.Length)]);
+                result.Append(letters[random.Next(letters.Length)]);
             }
 
             return result.ToString();
         }
 
-        public static string GenerateRandomNumbers(int length, string NUMBERS = "0123456789")
+        public static string GenerateRandomNumbers(int length, string numbers = "0123456789")
         {
             StringBuilder result = new StringBuilder(length);
 
             for (int i = 0; i < length; i++)
             {
-                result.Append(NUMBERS[random.Next(NUMBERS.Length)]);
+                result.Append(numbers[random.Next(numbers.Length)]);
             }
 
             return result.ToString();
@@ -36,7 +36,7 @@ namespace Sel.Utilities
 
         public static string GenerateUniqueBirthdate()
         {
-            int year = random.Next(1920, 2020);
+            int year = random.Next(1930, 2000);
             int month = random.Next(1, 13);
 
             int maxDay;
@@ -62,7 +62,20 @@ namespace Sel.Utilities
             return birthdate.ToString("MM/dd/yyyy");
         }
 
+        public static bool CheckPause(PageType currentPage)
+        {
+            if (TestData.SelectedPages!.Contains(currentPage))
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    DialogHelper.ShowCustomPauseDialog($"You are on the page: {currentPage}. Please perform your actions on this page, then manually navigate to the next page and only after that click Ok on this dialog to continue the execution.");
+                });
+                return true;
+            }
+            return false;
+        }
+
 
     }
-    
+
 }

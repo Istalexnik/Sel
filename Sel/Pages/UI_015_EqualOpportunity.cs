@@ -1,25 +1,14 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using Sel.Utilities;
 
 namespace Sel.Pages
 {
     public class UI_015_EqualOpportunity
     {
-
-
         By btnAgree = By.CssSelector("input[id$=btnAgree");
-
         public UI_015_EqualOpportunity()
         {
-            if(!btnAgree.FindIt()) { return;}
-
-
+            if (Helper.CheckPause(Enums.PageType.EqualOpportunity)) return;
             btnAgree.Click();
         }
     }

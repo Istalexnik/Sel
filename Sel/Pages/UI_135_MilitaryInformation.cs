@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Sel.Utilities;
 
 namespace Sel.Pages
 {
@@ -32,24 +33,24 @@ namespace Sel.Pages
 
         public UI_135_MilitaryInformation()
         {
-            if (!titleMilitaryService.FindIt()) { return; }
+            if (!titleMilitaryService.FindIt()) return;
 
-            rbSpouseNo.IsPresent()?.Click();
+            rbSpouseNo.Click();
 
             if (!TestData.Type.Contains(2))
             {
-                rbVeteranNo.IsPresent()?.Click();
+                rbVeteranNo.Click();
             }
 
-            rbServed180DaysNo.IsPresent()?.Click();
+            rbServed180DaysNo.Click();
 
-            ddClassifiedDisabledVeteran.IsPresent()?.SelectDropdownByIndex("1");
+            ddClassifiedDisabledVeteran.SelectDropdownByIndex("1");
 
             if (TestData.Type.Contains(2))
             {
-                ddWoundedYes.IsPresent()?.Click();
+                ddWoundedYes.Click();
                 ddTAPNo.Click();
-                dd24Or12OfdischargeNo.IsPresent()?.Click();
+                dd24Or12OfdischargeNo.Click();
                 Thread.Sleep(500);
                 btnNext.WaitForElementToBeClickable(25);
 

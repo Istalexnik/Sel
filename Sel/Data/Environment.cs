@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Sel
+namespace Sel.Data
 {
     public class Environment
     {
@@ -34,9 +34,9 @@ namespace Sel
                 new Environment("PR UAT", "https://uat-app-vos72000000.geosolinc.com/vosnet/default.aspx", "00780", "Puerto Rico", "PR", "Publix", "Tampa Toyota"),
                 new Environment("PR QA", "https://qa-app-vos72000000.geosolinc.com/vosnet/default.aspx", "00780", "Puerto Rico", "PR", "Publix", "Tampa Toyota"),
                 new Environment("PR STAGING", "https://staging-app-vos72000000.geosolinc.com/vosnet/default.aspx", "00780", "Puerto Rico", "PR", "Prog Child Care", "Toyota"),
-                new Environment("DC UAT", "https://uat-app-vos11000000-ui.geosolinc.com/vosnet/default.aspx", "20010", "District of Columbia", "DC", "SERDINO INC", "Tampa Toyota"),
-                new Environment("DC QA", "https://qa-app-vos11000000-ui.geosolinc.com/vosnet/default.aspx", "20010", "District of Columbia", "DC", "Target", "Tampa Toyota"),
-                new Environment("DC STAGING", "https://staging-app-vos11000000-ui.geosolinc.com/vosnet/default.aspx", "20010", "District of Columbia", "DC", "Toyota Motor North America Inc", "Tampa Toyota"),
+                new Environment("DC UAT", "https://uat-app-vos11000000.geosolinc.com/vosnet/default.aspx", "20010", "District of Columbia", "DC", "SERDINO INC", "Tampa Toyota"),
+                new Environment("DC QA", "https://qa-app-vos11000000.geosolinc.com/vosnet/default.aspx", "20010", "District of Columbia", "DC", "Target", "Tampa Toyota"),
+                new Environment("DC STAGING", "https://staging-app-vos11000000.geosolinc.com/vosnet/default.aspx", "20010", "District of Columbia", "DC", "Toyota Motor North America Inc", "Tampa Toyota"),
                 new Environment("DC PFL UAT", "https://uat-app-vos11980000.geosolinc.com/vosnet/default.aspx", "20010", "District of Columbia", "DC", "Target", "Tampa Toyota"),
                 new Environment("DC PFL CUAT", "https://cuat-app-vos11980000.geosolinc.com/vosnet/default.aspx", "20010", "District of Columbia", "DC", "Target", "Tampa Toyota"),
                 new Environment("DC PFL STAGING", "https://staging-app-vos11980000.geosolinc.com/vosnet/default.aspx", "20010", "District of Columbia", "DC", "Target", "Tampa Toyota"),

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Sel.Utilities;
 
 namespace Sel.Pages
 {
@@ -16,8 +17,8 @@ namespace Sel.Pages
         By btnNext = By.Id("ctl00_Main_content_btnNext");
         public UI_120_LaborUnion()
         {
-            if (new[] { "PFL" }.Any(site => TestData.Site.Contains(site))) { return; }
-            if (!titleLaborUnion.FindIt()) { return; }
+            if (new[] { "PFL" }.Contains(TestData.StateAbbreviation!)) return;
+            if (!titleLaborUnion.FindIt()) return;
 
             rbMemberNo.Click();
 

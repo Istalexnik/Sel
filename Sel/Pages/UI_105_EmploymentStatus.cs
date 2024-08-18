@@ -6,7 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using static Sel.SeleniumExtensions;
+using static Sel.Utilities.SeleniumExtensions;
+using Sel.Utilities;
 
 
 namespace Sel.Pages
@@ -27,17 +28,17 @@ namespace Sel.Pages
 
         public UI_105_EmploymentStatus()
         {
-            if (new[] { "PFL" }.Any(site => TestData.Site.Contains(site))) { return; }
+            if (new[] { "PFL" }.Contains(TestData.StateAbbreviation!)) return;
 
-            rbAcceptJobIfOfferedYes.IsPresent()?.Click();
+            rbAcceptJobIfOfferedYes.Click();
 
-            rbBeenPhysicallyAbleToWorkYes.IsPresent()?.Click();
+            rbBeenPhysicallyAbleToWorkYes.Click();
 
-            rbBeenAvailableToWorkYes.IsPresent()?.Click();
+            rbBeenAvailableToWorkYes.Click();
 
-            rbSelfEmployedNo.IsPresent()?.Click();
+            rbSelfEmployedNo.Click();
 
-            rbElectedOfficialNo.IsPresent()?.Click();
+            rbElectedOfficialNo.Click();
 
             btnNext.Click();
         }

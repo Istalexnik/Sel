@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Sel.Utilities;
 
 namespace Sel.Pages
 {
@@ -58,7 +59,7 @@ namespace Sel.Pages
 
         public UI_055_FederalService()
         {
-            if (!rbFederalCivilianEmployeeNo.FindIt()) { return; }
+            if (!rbFederalCivilianEmployeeNo.FindIt()) return;
 
             if (!TestData.Type.Contains(3))
             {
@@ -68,12 +69,12 @@ namespace Sel.Pages
             else
             {
                 rbFederalCivilianEmployeeYes.Click();
-                rbInHostStateYes.IsPresent()?.Click();
-                btnOk.IsPresent()?.Click();
-                rbInAnotherStateNo.IsPresent()?.Click();
-                rbWagesAssignedOtherStateNo.IsPresent()?.Click();
-                rbOutsideOfUSNo.IsPresent()?.Click();
-                txtSF50.IsPresent()?.SendKeys(TestData.StateAbbreviation);
+                rbInHostStateYes.Click();
+                btnOk.Click();
+                rbInAnotherStateNo.Click();
+                rbWagesAssignedOtherStateNo.Click();
+                rbOutsideOfUSNo.Click();
+                txtSF50.SendKeys(TestData.StateAbbreviation);
                 btnNext.Click();
 
                 //adding employer
@@ -81,33 +82,33 @@ namespace Sel.Pages
                 btnNext.Click();
 
                 //employer info
-               // spanFIC.IsPresent()?.Click();  //not needed? at least for AZ and IA
+               // spanFIC.Click();  //not needed? at least for AZ and IA
                 inputFIC.SendKeys(Keys.Down + Keys.Down + Keys.Down + Keys.Tab).WaitForElementToBeStaleAndRefind(); ;
                 ddDestinationCode.SelectDropdownByIndex("1").WaitForElementToBeStaleAndRefind();
-                rbOtherEmploymentNo.IsPresent()?.Click();
+                rbOtherEmploymentNo.Click();
                 ddStateOfEmployment.SelectDropdownByValue(TestData.StateAbbreviation).WaitForElementToBeStaleAndRefind();
-                txtCity.IsPresent()?.SendKeys("City");
-                txtCity2.IsPresent()?.SendKeys("City");
+                txtCity.SendKeys("City");
+                txtCity2.SendKeys("City");
                 rbForm8Yes.Click();
                 rbForm50Yes.Click();
                 txtWorkBeginDate.SendKeys(TestData.WorkBeginDate1);
                 txtWorkEndDate.SendKeys(TestData.WorkEndDate1);
-                txtSearationpDate.IsPresent()?.SendKeys(TestData.WorkEndDate1);
-                ddSeparationReason.SelectDropdownByPartialText("Lay");
-                rbGovernmentShutdownNo.IsPresent()?.Click();
-                ddEmployerCategory.IsPresent()?.SelectDropdownByIndex("1");
-                ddOccupation.IsPresent()?.SelectDropdownByIndex("1");
+                txtSearationpDate.SendKeys(TestData.WorkEndDate1);
+                ddSeparationReason.SelectDropdownByText("Lay", true);
+                rbGovernmentShutdownNo.Click();
+                ddEmployerCategory.SelectDropdownByIndex("1");
+                ddOccupation.SelectDropdownByIndex("1");
                 txtWagesQ1.SendKeys("5000");
-                txtWeeksQ1.IsPresent()?.SendKeys("13");
+                txtWeeksQ1.SendKeys("13");
                 txtWagesQ2.SendKeys("5000");
-                txtWeeksQ2.IsPresent()?.SendKeys("13");
+                txtWeeksQ2.SendKeys("13");
                 txtWagesQ3.SendKeys("5000");
-                txtWeeksQ3.IsPresent()?.SendKeys("13");
+                txtWeeksQ3.SendKeys("13");
                 txtWagesQ4.SendKeys("5000");
-                txtWeeksQ4.IsPresent()?.SendKeys("13");
-                txtWagesQ5.IsPresent()?.SendKeys("5000");
-                txtWagesQ6.IsPresent()?.SendKeys("5000");
-                rbDidYouWorkInNEAfterThatNo.IsPresent()?.Click();
+                txtWeeksQ4.SendKeys("13");
+                txtWagesQ5.SendKeys("5000");
+                txtWagesQ6.SendKeys("5000");
+                rbDidYouWorkInNEAfterThatNo.Click();
                 rbDidYouWorkAnywhereAfterThatNo.Click();
                 btnNext.Click();
 

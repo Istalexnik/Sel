@@ -9,8 +9,9 @@ using System.Windows.Media;
 using Sel.Data;
 using Sel.Enums;
 using Sel.Utilities;
+using Environment = Sel.Data.Environment;
 
-namespace Sel
+namespace Sel.GUI
 {
     public class MainWindow : Window
     {
@@ -35,6 +36,7 @@ namespace Sel
         private TextBox? createdUsernamesTextArea;
 
         private string? stateAbbreviation;
+        private string? stateName;
 
         private List<Environment> environments;
         private List<PageType> selectedPages;
@@ -48,18 +50,18 @@ namespace Sel
 
         private void InitializeComponents()
         {
-            this.Title = "Sel";
-            this.Width = 530;
-            this.Height = 600;
-            this.ResizeMode = ResizeMode.CanMinimize;
-            this.WindowStyle = WindowStyle.SingleBorderWindow;
+            Title = "Sel";
+            Width = 530;
+            Height = 600;
+            ResizeMode = ResizeMode.CanMinimize;
+            WindowStyle = WindowStyle.SingleBorderWindow;
 
-            this.Background = new SolidColorBrush(Colors.LightGray);
-            this.BorderBrush = new SolidColorBrush(Colors.DarkGray);
-            this.BorderThickness = new Thickness(2);
+            Background = new SolidColorBrush(Colors.LightGray);
+            BorderBrush = new SolidColorBrush(Colors.DarkGray);
+            BorderThickness = new Thickness(2);
 
             Grid grid = new Grid();
-            this.Content = grid;
+            Content = grid;
 
             grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
             grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
@@ -124,7 +126,7 @@ namespace Sel
             AddLabelAndTextBox(grid, "First Name:", 1, 0, out firstnameTextBox, "Random");
             AddLabelAndTextBox(grid, "Last Name:", 2, 0, out lastnameTextBox, "Random");
             AddLabelAndTextBox(grid, "SSN:", 3, 0, out ssnTextBox, "Random");
-            AddLabelAndTextBox(grid, "DOB:", 4, 0, out dobTextBox, "11/11/1959");
+            AddLabelAndTextBox(grid, "DOB:", 4, 0, out dobTextBox, Helper.GenerateUniqueBirthdate());
             AddLabelAndTextBox(grid, "Zip:", 5, 0, out zipTextBox);
 
             createdUsernamesTextArea = new TextBox
@@ -297,6 +299,7 @@ namespace Sel
                 employer1TextBox!.Text = environment.Employer1;
                 employer2TextBox!.Text = environment.Employer2;
                 stateAbbreviation = environment.StateAbbreviation;
+                stateName = environment.StateName;
             }
         }
 
@@ -314,7 +317,7 @@ namespace Sel
             if (element != null)
             {
                 element.Visibility = isEnabled ? Visibility.Visible : Visibility.Collapsed;
-                foreach (UIElement child in ((Grid)this.Content).Children)
+                foreach (UIElement child in ((Grid)Content).Children)
                 {
                     if (Grid.GetRow(child) == row && Grid.GetColumn(child) == 0)
                     {
@@ -338,7 +341,7 @@ namespace Sel
                     // Run the WebDriver on a separate thread using the pre-fetched TestData
                     await Task.Run(() =>
                     {
-                        SeleniumBase.RunSeleniumTest(TestData.Url, selectedPages);
+                        SeleniumBase.RunSeleniumTest(TestData.Url);
                     });
                     MessageBox.Show("Selenium test completed!");
                 }
@@ -365,7 +368,7 @@ namespace Sel
             firstnameTextBox!.Text = "Random";
             lastnameTextBox!.Text = "Random";
             ssnTextBox!.Text = "Random";
-            dobTextBox!.Text = "11/11/1959";
+            dobTextBox!.Text = Helper.GenerateUniqueBirthdate();
             zipTextBox!.Text = "";
             employer1TextBox!.Text = "";
             employer1BeginDateTextBox!.Text = "01/01/2020";
@@ -396,24 +399,28 @@ namespace Sel
 
         private void FetchData()
         {
-            TestData.SSN = String.IsNullOrWhiteSpace(ssnTextBox!.Text) || ssnTextBox.Text == "Random"
-                ? DataGenerator.GenerateRandomNumbers(1, "234567") + DataGenerator.GenerateRandomNumbers(8)
+            TestData.SSN = string.IsNullOrWhiteSpace(ssnTextBox!.Text) || ssnTextBox.Text == "Random"
+                ? Helper.GenerateRandomNumbers(1, "234567") + Helper.GenerateRandomNumbers(8)
                 : ssnTextBox.Text;
             TestData.Url = urlTextBox!.Text;
+            TestData.StateName = stateName;
             TestData.StateAbbreviation = stateAbbreviation;
             TestData.Zip = zipTextBox!.Text;
             TestData.Employer1 = employer1TextBox!.Text;
             TestData.Employer2 = employer2TextBox!.Text;
             TestData.useTwoEmployers = useSecondEmployerCheckBox!.IsChecked ?? false;
-            TestData.FirstName = firstnameTextBox!.Text;
-            TestData.LastName = lastnameTextBox!.Text;
+            TestData.FirstName = TestData.LastName = firstnameTextBox!.Text == "Random" && lastnameTextBox!.Text == "Random" ? Helper.GenerateRandomLetters(8) : firstnameTextBox.Text == "Random" ? Helper.GenerateRandomLetters(8) : firstnameTextBox.Text;
+            TestData.LastName = lastnameTextBox!.Text == "Random" && firstnameTextBox.Text != "Random"
+                ? Helper.GenerateRandomLetters(8)
+                : lastnameTextBox.Text;
             TestData.DOB = dobTextBox!.Text;
             TestData.WorkBeginDate1 = employer1BeginDateTextBox!.Text;
             TestData.WorkEndDate1 = employer1EndDateTextBox!.Text;
             TestData.WorkBeginDate2 = employer2BeginDateTextBox!.Text;
             TestData.WorkEndDate2 = employer2EndDateTextBox!.Text;
-            TestData.Username = "GSIUIAI" + DataGenerator.GenerateRandomLetters(7) + (new[] { "PR" }.Any(site => TestData.Site.Contains(site)) ? "01" : "1");
+            TestData.Username = "GSIUIAI" + Helper.GenerateRandomLetters(7) + (new[] { "PR" }.Any(site => TestData.StateAbbreviation!.Contains(site)) ? "01" : "1");
             TestData.Email = TestData.Username + "@geosolinc.com";
+            TestData.SelectedPages = selectedPages;
         }
     }
 }

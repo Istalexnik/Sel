@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using Sel.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace Sel.Pages
 
         public UI_030_UnemploymentInsuranceCompemsation()
         {
-            if (!rbFilingUI.FindIt()) { return; }
+            if (!rbFilingUI.FindIt()) return;
 
             rbFilingUI.Click();
 

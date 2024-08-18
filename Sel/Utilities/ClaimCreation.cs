@@ -1,15 +1,16 @@
 ﻿using Sel.Pages;
 using Sel.Data;
+using System.Diagnostics;
 
-namespace Sel
+namespace Sel.Utilities
 {
     public class ClaimCreation
     {
         public void CreateClaim()
         {
-            Console.WriteLine(TestData.SSN);
-            Console.WriteLine(TestData.Username);
-            Console.WriteLine(TestData.Url);
+            Debug.WriteLine(TestData.SSN);
+            Debug.WriteLine(TestData.Username);
+            Debug.WriteLine(TestData.Url);
 
 
             new UI_005_HomePage();

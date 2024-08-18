@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Sel.Data;
+using Sel.Utilities;
 
 
 namespace Sel.Pages
@@ -22,7 +23,7 @@ namespace Sel.Pages
             txtPhone1.SendKeys(TestData.Phone.Substring(0, 3));
             txtPhone2.SendKeys(TestData.Phone.Substring(3, 3));
             txtPhone3.SendKeys(TestData.Phone.Substring(6, 4));
-            ddPhoneType.IsPresent()?.SelectDropdownByIndex("1");
+            ddPhoneType.SelectDropdownByIndex("1");
             btnNext.Click();
 
         }

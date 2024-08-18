@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Sel.Utilities;
 
 namespace Sel.Pages
 {
@@ -22,7 +23,7 @@ namespace Sel.Pages
 
         public UI_085_NotficationMethod()
         {
-            if (new[] { "PFL" }.Any(site => TestData.Site.Contains(site)))
+            if (new[] { "PFL" }.Contains(TestData.StateAbbreviation!))
             {
                 ddUINotices.SelectDropdownByValue("1");
             }
@@ -31,16 +32,16 @@ namespace Sel.Pages
                 ddUINotices.SelectDropdownByValue("7");
 
             }
-            chkConsent.IsPresent()?.Click();
+            chkConsent.Click();
 
-            ddOtherNotices.IsPresent()?.SelectDropdownByValue("7");
+            ddOtherNotices.SelectDropdownByValue("7");
 
-            ddFromWhereAccessing.IsPresent()?.SelectDropdownByIndex("1");
+            ddFromWhereAccessing.SelectDropdownByIndex("1");
 
-            dd1099TaxForm.IsPresent()?.SelectDropdownByValue("7");
+            dd1099TaxForm.SelectDropdownByValue("7");
 
-            rbLaborMSG.IsPresent()?.Click();
-            ddReferral.IsPresent()?.SelectDropdownByIndex("1");
+            rbLaborMSG.Click();
+            ddReferral.SelectDropdownByIndex("1");
 
             btnNext.Click();
         }

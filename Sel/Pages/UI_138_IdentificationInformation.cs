@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Sel.Data;
+using Sel.Utilities;
 
 
 namespace Sel.Pages
@@ -21,7 +22,7 @@ namespace Sel.Pages
 
         public UI_138_IdentificationInformation()
         {
-            if (!rbHaveDriverLicenseYes.FindIt()) { return; }
+            if (!rbHaveDriverLicenseYes.FindIt()) return;
 
             rbHaveDriverLicenseYes.Click();
 

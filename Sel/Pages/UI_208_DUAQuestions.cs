@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Sel.Utilities;
 
 namespace Sel.Pages
 {
@@ -24,7 +25,7 @@ namespace Sel.Pages
         By btnNext = By.Id("ctl00_Main_content_ucGSIButtons_btnNext");
         public UI_208_DUAQuestions()
         {
-            if (!rbDirectResultYes.FindIt()) { return; }
+            if (!rbDirectResultYes.FindIt()) return;
 
             txtDescribeInability.SendKeys("Test");
             rbDirectResultYes.Click();

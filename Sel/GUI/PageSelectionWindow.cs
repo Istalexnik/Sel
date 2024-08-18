@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Sel.Enums;
 
-namespace Sel
+namespace Sel.GUI
 {
     public class PageSelectionWindow : Window
     {
@@ -16,11 +16,11 @@ namespace Sel
 
         public PageSelectionWindow()
         {
-            this.Title = "Select Pages to Pause";
-            this.Width = 300;
-            this.Height = 400;
-            this.ResizeMode = ResizeMode.NoResize;
-            this.WindowStyle = WindowStyle.SingleBorderWindow;
+            Title = "Select Pages to Pause";
+            Width = 300;
+            Height = 400;
+            ResizeMode = ResizeMode.NoResize;
+            WindowStyle = WindowStyle.SingleBorderWindow;
 
             InitializeComponents();
         }
@@ -28,7 +28,7 @@ namespace Sel
         private void InitializeComponents()
         {
             Grid grid = new Grid();
-            this.Content = grid;
+            Content = grid;
 
             // Define rows and columns
             grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) }); // ListBox
@@ -69,8 +69,8 @@ namespace Sel
         {
             // Store the selected pages
             SelectedPages = pageSelectionListBox!.SelectedItems.Cast<PageType>().ToList();
-            this.DialogResult = true;
-            this.Close();
+            DialogResult = true;
+            Close();
         }
     }
 }

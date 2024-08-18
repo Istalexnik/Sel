@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Sel.Data;
 using System.Threading;
+using Sel.Utilities;
 
 namespace Sel.Pages
 {
@@ -24,18 +25,18 @@ namespace Sel.Pages
         {
             Thread.Sleep(200);
 
-            rbAddressConfidentialityProgram.IsPresent()?.Click();
+            rbAddressConfidentialityProgram.Click();
 
             txtAddress1.WaitForElementToBeClickable().SendKeys(TestData.Address1 + Keys.Tab);
 
-            if (new[] {"IA", "DC", "LA"}.Any(site => TestData.Site.Contains(site)))
+            if (new[] {"IA", "DC", "LA"}.Contains(TestData.StateAbbreviation!))
             {
                 txtAddress1.WaitForElementToBeStaleAndRefind();
             }
 
-            ddWard.IsPresent()?.SelectDropdownByIndex("1");  //.WaitForElementToBeStaleAndRefind()    -- DC UI UAT
+            ddWard.SelectDropdownByIndex("1");  //.WaitForElementToBeStaleAndRefind()    -- DC UI UAT
 
-            rbValidation.IsPresent()?.Click();   //.WaitForElementToBeStaleAndRefind()  -- DC UI UAT
+            rbValidation.Click();   //.WaitForElementToBeStaleAndRefind()  -- DC UI UAT
 
             cbSameAddress.Click();
 

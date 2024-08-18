@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Sel.Utilities;
 
 namespace Sel.Pages
 {
@@ -16,7 +17,7 @@ namespace Sel.Pages
 
         public UI_045_WorkHistoryVerification()
         {
-            if (!rbDidYouWorkYes.FindIt()) { return; }
+            if (!rbDidYouWorkYes.FindIt()) return;
 
             if (TestData.Type.Contains(7))
             {

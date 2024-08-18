@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Sel.Utilities;
 
 namespace Sel.Pages
 {
@@ -47,7 +48,7 @@ namespace Sel.Pages
 
         public UI_060_MilitaryService()
         {
-            if (!rbMilitaryServiceNo.FindIt()) { return; }
+            if (!rbMilitaryServiceNo.FindIt()) return;
 
             if (!TestData.Type.Contains(2))
             {
@@ -57,12 +58,12 @@ namespace Sel.Pages
             else
             {
                 rbMilitaryServiceYes.Click();
-                ddWherePhysicallyLocated.IsPresent()?.SelectDropdownByValue(TestData.StateAbbreviation);
-                btnOk.IsPresent()?.Click();
-                rbLocatedInHostStateYes.IsPresent()?.Click();
-                txtAddress.IsPresent()?.SendKeys(TestData.Address1);
-                txtZip.IsPresent()?.SendKeys(TestData.Zip);
-                txtCity.IsPresent()?.SendKeys("City");
+                ddWherePhysicallyLocated.SelectDropdownByValue(TestData.StateAbbreviation);
+                btnOk.Click();
+                rbLocatedInHostStateYes.Click();
+                txtAddress.SendKeys(TestData.Address1);
+                txtZip.SendKeys(TestData.Zip);
+                txtCity.SendKeys("City");
                 //Thread.Sleep(20000);
                 btnNext.Click();
 
@@ -77,20 +78,20 @@ namespace Sel.Pages
                 txtEntryDate.SendKeys(TestData.WorkBeginDate1);
                 txtSeparationDate.SendKeys(TestData.WorkEndDate1);
                 ddCharacterOfService.SelectDropdownByIndex("1");
-                ddReasonForSeparation.IsPresent()?.SelectDropdownByIndex("1");
-                rbGovernmentShutdownNo.IsPresent()?.Click();
+                ddReasonForSeparation.SelectDropdownByIndex("1");
+                rbGovernmentShutdownNo.Click();
                 ddPayGrade.SelectDropdownByIndex("1");
                 txtAccruedDaysOfLeave.SendKeys("0");
-                txtLostDays.IsPresent()?.SendKeys("0");
+                txtLostDays.SendKeys("0");
                 rbPhysicalDisabilityNo.Click();
                 rbMilitaryRetireeNo.Click();
                 rbCompletedFirstTermNo.Click();
-                txtYearsAgreed.IsPresent()?.SendKeys("1");
-                txtYearsCompleted.IsPresent()?.SendKeys("1");
+                txtYearsAgreed.SendKeys("1");
+                txtYearsCompleted.SendKeys("1");
 
-                rbAppliedForEduAllowanceNo.IsPresent()?.Click();
+                rbAppliedForEduAllowanceNo.Click();
                 rbAppliedForAllowanceNo.Click();
-                rbAppliedForAssistanceNo.IsPresent()?.Click();
+                rbAppliedForAssistanceNo.Click();
                 btnNext.Click();
 
                 //adding employer

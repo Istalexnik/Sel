@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using Sel.GUI;
 
 namespace Sel
 {

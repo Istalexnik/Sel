@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using Sel.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace Sel.Pages
 
         public UI_207_DUALateFiling()
         {
-            if (!rbEvidenceNo.FindIt()) { return; }
+            if (!rbEvidenceNo.FindIt()) return;
 
             txtExplainWhyLate.SendKeys("Test");
             rbEvidenceNo.Click();

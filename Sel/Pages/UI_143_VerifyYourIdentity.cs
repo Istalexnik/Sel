@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using Sel.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,12 +15,12 @@ namespace Sel.Pages
 
         public UI_143_VerifyYourIdentity()
         {
-            if (!titleYourIdentity.FindIt()) { return; }
+            if (!titleYourIdentity.FindIt()) return;
 
             btnNext.Click();
 
             //problem in GUS that th epage shows twice
-            btnNext.IsPresent()?.Click();
+            btnNext.Click();
         }
     }
 }
