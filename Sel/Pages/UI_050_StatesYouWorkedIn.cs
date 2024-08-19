@@ -1,16 +1,6 @@
-﻿using Sel.Data;
-using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Sel.Utilities;
-
-namespace Sel.Pages
+﻿namespace Sel.Pages
 {
-    public class UI_050_StatesYouWorkedIn 
+    public class UI_050_StatesYouWorkedIn
     {
         By rbWorkedInTwoStatesNo = By.CssSelector("label[for$=rblStatesWorkedIn_1]");
         By rbWorkedInTwoStatesYes = By.CssSelector("label[for$=rblStatesWorkedIn_0]");
@@ -18,7 +8,6 @@ namespace Sel.Pages
         By cbHostState = By.CssSelector("label[for$=chkStateHostState]");
         By cbOtherState = By.CssSelector("label[for$=chkStateList_9]");
         By btnNext = By.CssSelector("input[id$=StepNextButton]");
-
         By titleCreditWeeks = By.XPath("(//h2[text()='Credit Weeks'])");
         By txtQW1Q1 = By.CssSelector("input[id$=rptCreditWeeks_ctl00_txtQ1]");
         By txtQW1Q2 = By.CssSelector("input[id$=rptCreditWeeks_ctl00_txtQ2]");
@@ -30,18 +19,18 @@ namespace Sel.Pages
         By txtQW2Q3 = By.CssSelector("input[id$=rptCreditWeeks_ctl02_txtQ3]");
         By txtQW2Q4 = By.CssSelector("input[id$=rptCreditWeeks_ctl02_txtQ4]");
         By txtQW2Q5 = By.CssSelector("input[id$=rptCreditWeeks_ctl02_txtQ5]");
-
         By rbWishToFileinHostStateYes = By.CssSelector("label[for$=rblFileInHostState_0]");
         By btnOk = By.CssSelector("input[id=btn-dialog-save]");
 
         public UI_050_StatesYouWorkedIn()
         {
-            if (!rbWorkedInTwoStatesNo.FindIt()) return;
+            if (Helper.CheckPause(Enums.PageType.StatesYouWorkedIn)) return;
 
-            if (!TestData.Type.Contains(4))
+            if (TestData.ClaimType != Enums.ClaimType.CWC)
             {
                 rbWorkedInTwoStatesNo.Click();
                 rbClaimedUnemployment.Click();
+                CheckInputs();
                 btnNext.Click();
 
             }
@@ -70,6 +59,7 @@ namespace Sel.Pages
 
                 rbWishToFileinHostStateYes.Click();
                 btnOk.Click();
+                CheckInputs();
                 btnNext.Click();
             }
         }

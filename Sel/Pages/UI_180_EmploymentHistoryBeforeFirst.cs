@@ -31,11 +31,7 @@ namespace Sel.Pages
 
         public UI_180_EmploymentHistoryBeforeFirst()
         {
-            if (TestData.Type.Contains(7))
-            {
-                rbAddEmployerNo.Click();
-            }
-            else if (TestData.Type.Contains(2) || TestData.Type.Contains(3))
+       if (TestData.ClaimType != Enums.ClaimType.UCX || TestData.ClaimType != Enums.ClaimType.UCFE)
             {
                 if (!titlePartiallyCompletedEmploymentHistory.FindIt())
                 {

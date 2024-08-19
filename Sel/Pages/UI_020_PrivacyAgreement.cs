@@ -1,22 +1,12 @@
-﻿using OpenQA.Selenium;
-using Sel.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Sel.Pages
+﻿namespace Sel.Pages
 {
     public class UI_020_PrivacyAgreement
     {
         By btnAgree = By.CssSelector("input[id$=btnAgree]");
 
-
         public UI_020_PrivacyAgreement()
         {
-            if (!btnAgree.FindIt()) return;
-
+            if (Helper.CheckPause(Enums.PageType.PrivacyAgreement)) return;
             btnAgree.Click();
         }
     }

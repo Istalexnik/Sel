@@ -6,6 +6,7 @@
         UCX,
         UCFE,
         CWC,
-        Alien
+        Alien,
+        DUA
     }
 }

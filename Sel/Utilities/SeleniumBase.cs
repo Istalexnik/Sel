@@ -1,8 +1,5 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Edge;
-using System.Windows;
-using Sel.Enums;
-using System.IO;
 
 namespace Sel.Utilities
 {

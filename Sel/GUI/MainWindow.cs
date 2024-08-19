@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Numerics;
-using System.Runtime.Intrinsics.X86;
-using System.Security.Policy;
+﻿using Sel.Data;
+using Sel.Enums;
+using Sel.Utilities;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using Sel.Data;
-using Sel.Enums;
-using Sel.Utilities;
 using Environment = Sel.Data.Environment;
 
 namespace Sel.GUI
@@ -409,9 +404,14 @@ namespace Sel.GUI
             TestData.Employer1 = employer1TextBox!.Text;
             TestData.Employer2 = employer2TextBox!.Text;
             TestData.useTwoEmployers = useSecondEmployerCheckBox!.IsChecked ?? false;
-            TestData.FirstName = TestData.LastName = firstnameTextBox!.Text == "Random" && lastnameTextBox!.Text == "Random" ? Helper.GenerateRandomLetters(8) : firstnameTextBox.Text == "Random" ? Helper.GenerateRandomLetters(8) : firstnameTextBox.Text;
-            TestData.LastName = lastnameTextBox!.Text == "Random" && firstnameTextBox.Text != "Random"
+            string? randomName = (firstnameTextBox!.Text == "Random" && lastnameTextBox!.Text == "Random")
                 ? Helper.GenerateRandomLetters(8)
+                : null;
+            TestData.FirstName = firstnameTextBox.Text == "Random"
+                ? randomName ?? Helper.GenerateRandomLetters(8)
+                : firstnameTextBox.Text;
+            TestData.LastName = lastnameTextBox!.Text == "Random"
+                ? randomName ?? Helper.GenerateRandomLetters(8)
                 : lastnameTextBox.Text;
             TestData.DOB = dobTextBox!.Text;
             TestData.WorkBeginDate1 = employer1BeginDateTextBox!.Text;
@@ -421,6 +421,7 @@ namespace Sel.GUI
             TestData.Username = "GSIUIAI" + Helper.GenerateRandomLetters(7) + (new[] { "PR" }.Any(site => TestData.StateAbbreviation!.Contains(site)) ? "01" : "1");
             TestData.Email = TestData.Username + "@geosolinc.com";
             TestData.SelectedPages = selectedPages;
+            TestData.ClaimType = (ClaimType)claimTypeComboBox!.SelectedValue;
         }
     }
 }

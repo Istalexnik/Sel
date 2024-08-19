@@ -1,14 +1,4 @@
-﻿using Sel.Data;
-using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Sel.Utilities;
-
-namespace Sel.Pages
+﻿namespace Sel.Pages
 {
     public class UI_060_MilitaryService
     {
@@ -41,18 +31,18 @@ namespace Sel.Pages
         By rbCompletedFirstTermNo = By.CssSelector("label[for$=rblCompletedFirstFullTermDuty_1]");
         By txtYearsAgreed = By.CssSelector("input[id$=txtYearsOfServiceAgreedTo]");
         By txtYearsCompleted = By.CssSelector("input[id$=ctl00_Main_content_Wizard1_ucMilitaryService_txtYearsOfServiceCompleted]");
-
         By rbAppliedForEduAllowanceNo = By.CssSelector("label[for$=rblReceivingAnEducationalAllowance_1]");
         By rbAppliedForAllowanceNo = By.CssSelector("label[for$=rblSubsistenceVocRehabTraining_1]");
         By rbAppliedForAssistanceNo = By.CssSelector("label[for$=rblWarOrphanWidowsEducationAllowance_1]");
 
         public UI_060_MilitaryService()
         {
-            if (!rbMilitaryServiceNo.FindIt()) return;
+            if (Helper.CheckPause(Enums.PageType.MilitaryService)) return;
 
-            if (!TestData.Type.Contains(2))
+            if (TestData.ClaimType != Enums.ClaimType.UCX)
             {
                 rbMilitaryServiceNo.Click();
+                CheckInputs();
                 btnNext.Click();
             }
             else
@@ -62,13 +52,14 @@ namespace Sel.Pages
                 btnOk.Click();
                 rbLocatedInHostStateYes.Click();
                 txtAddress.SendKeys(TestData.Address1);
-                txtZip.SendKeys(TestData.Zip);
+                txtZip.SendKeys(TestData.Zip!);
                 txtCity.SendKeys("City");
-                //Thread.Sleep(20000);
+                CheckInputs();
                 btnNext.Click();
 
                 //adding employer
                 rbAddMilitaryEmployerYes.Click();
+                CheckInputs();
                 btnNext.Click();
 
                 //employer info
@@ -88,17 +79,17 @@ namespace Sel.Pages
                 rbCompletedFirstTermNo.Click();
                 txtYearsAgreed.SendKeys("1");
                 txtYearsCompleted.SendKeys("1");
-
                 rbAppliedForEduAllowanceNo.Click();
                 rbAppliedForAllowanceNo.Click();
                 rbAppliedForAssistanceNo.Click();
+                CheckInputs();
                 btnNext.Click();
 
                 //adding employer
                 rbAddMilitaryEmployerNo.Click();
+                CheckInputs();
                 btnNext.Click();
             }
-
         }
     }
 }

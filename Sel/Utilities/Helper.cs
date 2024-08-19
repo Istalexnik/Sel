@@ -64,6 +64,8 @@ namespace Sel.Utilities
 
         public static bool CheckPause(PageType currentPage)
         {
+            WaitForPageToLoad();
+
             if (TestData.SelectedPages!.Contains(currentPage))
             {
                 Application.Current.Dispatcher.Invoke(() =>

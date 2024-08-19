@@ -1,7 +1,4 @@
-﻿using OpenQA.Selenium;
-using Sel.Utilities;
-
-namespace Sel.Pages
+﻿namespace Sel.Pages
 {
     public class UI_010_IntroPage
     {

@@ -11,7 +11,7 @@ namespace Sel.Data
 {
     public static class TestData
     {
-        public static int[] Type { get; set; } = {};
+        public static ClaimType ClaimType { get; set; }
         public static string SSN { get; set; } = "";
         public static string? Employer1 { get; set; } = "";
         public static string? Employer2 { get; set; } = "";

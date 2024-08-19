@@ -1,18 +1,7 @@
-﻿using Sel.Data;
-using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Sel.Utilities;
-
-namespace Sel.Pages
+﻿namespace Sel.Pages
 {
     public class UI_055_FederalService
     {
-
         By rbFederalCivilianEmployeeNo = By.CssSelector("label[for$=rblFederalCivilianEmployee_1]");
         By rbFederalCivilianEmployeeYes = By.CssSelector("label[for$=rblFederalCivilianEmployee_0]");
         By rbInHostStateYes = By.CssSelector("label[for$=rblFederalCivilianEmployeeHostState_0]");
@@ -22,10 +11,8 @@ namespace Sel.Pages
         By rbOutsideOfUSNo = By.CssSelector("label[for$=rblLastOfficialDutyStationOutsideUS_1]");
         By txtSF50 = By.CssSelector("input[id$=txtLastOfficialDutyStationLocation]");
         By btnNext = By.CssSelector("input[id$=StepNextButton]");
-
         By rbAddFederalEmployerYes = By.CssSelector("label[for$=rbAddNewEmp_0]");
         By rbAddFederalEmployerNo = By.CssSelector("label[for$=rbAddNewEmp_1]");
-
         By spanFIC = By.CssSelector("span[class=ui-icon-triangle-1-s]");
         By inputFIC = By.CssSelector("input[id=cmbCustomFIC]");
         By ddDestinationCode = By.CssSelector("select[id$=ddlDestCodes]");
@@ -33,7 +20,6 @@ namespace Sel.Pages
         By ddStateOfEmployment = By.CssSelector("select[id$=ddlStateOfEmployment]");
         By txtCity = By.CssSelector("input[id$=txtOutofCountryCity]");
         By txtCity2 = By.CssSelector("input[id$=txtCityOfEmployment]");
-        
         By rbForm8Yes = By.CssSelector("label[for$=rblReceiveStandardForm8_0]");
         By rbForm50Yes = By.CssSelector("label[for$=rblReceiveStandardForm50_0]");
         By txtWorkBeginDate = By.CssSelector("input[id$=txtDateBeganWork]");
@@ -56,16 +42,16 @@ namespace Sel.Pages
         By rbDidYouWorkInNEAfterThatNo = By.CssSelector("label[for$=rblWorkedInStateAfterFederalEmployment_1]");
         By rbDidYouWorkAnywhereAfterThatNo = By.CssSelector("label[for$=rblOtherEmploymentLastNMonths_1]");
 
-
         public UI_055_FederalService()
         {
-            if (!rbFederalCivilianEmployeeNo.FindIt()) return;
+            if (Helper.CheckPause(Enums.PageType.FederalService)) return;
 
-            if (!TestData.Type.Contains(3))
+            if (TestData.ClaimType != Enums.ClaimType.UCFE)
             {
                 rbFederalCivilianEmployeeNo.Click();
+                CheckInputs();
                 btnNext.Click();
-            } 
+            }
             else
             {
                 rbFederalCivilianEmployeeYes.Click();
@@ -74,19 +60,20 @@ namespace Sel.Pages
                 rbInAnotherStateNo.Click();
                 rbWagesAssignedOtherStateNo.Click();
                 rbOutsideOfUSNo.Click();
-                txtSF50.SendKeys(TestData.StateAbbreviation);
+                txtSF50.SendKeys(TestData.StateAbbreviation!);
+                CheckInputs();
                 btnNext.Click();
 
                 //adding employer
                 rbAddFederalEmployerYes.Click();
+                CheckInputs();
                 btnNext.Click();
 
                 //employer info
-               // spanFIC.Click();  //not needed? at least for AZ and IA
-                inputFIC.SendKeys(Keys.Down + Keys.Down + Keys.Down + Keys.Tab).WaitForElementToBeStaleAndRefind(); ;
-                ddDestinationCode.SelectDropdownByIndex("1").WaitForElementToBeStaleAndRefind();
+                inputFIC.SendKeys(Keys.Down + Keys.Down + Keys.Down + Keys.Tab);
+                ddDestinationCode.SelectDropdownByIndex("1");
                 rbOtherEmploymentNo.Click();
-                ddStateOfEmployment.SelectDropdownByValue(TestData.StateAbbreviation).WaitForElementToBeStaleAndRefind();
+                ddStateOfEmployment.SelectDropdownByValue(TestData.StateAbbreviation);
                 txtCity.SendKeys("City");
                 txtCity2.SendKeys("City");
                 rbForm8Yes.Click();
@@ -110,15 +97,14 @@ namespace Sel.Pages
                 txtWagesQ6.SendKeys("5000");
                 rbDidYouWorkInNEAfterThatNo.Click();
                 rbDidYouWorkAnywhereAfterThatNo.Click();
+                CheckInputs();
                 btnNext.Click();
 
                 //adding employer
                 rbAddFederalEmployerNo.Click();
+                CheckInputs();
                 btnNext.Click();
             }
-
-
         }
-
     }
 }

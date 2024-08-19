@@ -1,8 +1,4 @@
-﻿using OpenQA.Selenium;
-using Sel.Data;
-using Sel.Utilities;
-
-namespace Sel.Pages
+﻿namespace Sel.Pages
 {
     public class UI_005_HomePage
     {
@@ -11,9 +7,9 @@ namespace Sel.Pages
 
         public UI_005_HomePage()
         {
-            if(Helper.CheckPause(Enums.PageType.HomePage)) return;
+            if (Helper.CheckPause(Enums.PageType.HomePage)) return;
             ddLanguage.SelectDropdownByValue("E");
-            btnLogin.Click();    
+            btnLogin.Click();
         }
     }
 }

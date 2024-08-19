@@ -1,12 +1,4 @@
-﻿using OpenQA.Selenium;
-using Sel.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Sel.Pages
+﻿namespace Sel.Pages
 {
     public class UI_030_UnemploymentInsuranceCompemsation
     {
@@ -15,12 +7,9 @@ namespace Sel.Pages
 
         public UI_030_UnemploymentInsuranceCompemsation()
         {
-            if (!rbFilingUI.FindIt()) return;
-
+            if (Helper.CheckPause(Enums.PageType.UnemploymentInsuranceCompensation)) return;
             rbFilingUI.Click();
-
             btnNext.Click();
         }
-
     }
 }

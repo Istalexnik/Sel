@@ -37,7 +37,7 @@ namespace Sel.Pages
 
             rbSpouseNo.Click();
 
-            if (!TestData.Type.Contains(2))
+            if (TestData.ClaimType != Enums.ClaimType.Regular)
             {
                 rbVeteranNo.Click();
             }
@@ -46,7 +46,7 @@ namespace Sel.Pages
 
             ddClassifiedDisabledVeteran.SelectDropdownByIndex("1");
 
-            if (TestData.Type.Contains(2))
+            if (TestData.ClaimType == Enums.ClaimType.UCX)
             {
                 ddWoundedYes.Click();
                 ddTAPNo.Click();

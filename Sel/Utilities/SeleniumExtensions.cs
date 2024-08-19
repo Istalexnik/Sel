@@ -1,12 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using System;
 using System.Collections.ObjectModel;
-using Sel.Data;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using OpenQA.Selenium.Internal;
 using System.Diagnostics;
 
 namespace Sel.Utilities
@@ -45,6 +39,65 @@ namespace Sel.Utilities
         {
             return new WebDriverWait(Driver, TimeSpan.FromSeconds(waitTimeInSeconds ?? GetTimeout()));
         }
+
+
+
+        public static void CheckInputs()
+        {
+            var inputs = Driver.FindElements(By.CssSelector(
+                "input[type='text'][required], textarea[required], input[type='radio'][required], input[type='checkbox'][required], " +
+                "input[type='text'][aria-required='true'], textarea[aria-required='true'], input[type='radio'][aria-required='true'], input[type='checkbox'][aria-required='true'], " +
+                "select[required], select[aria-required='true']"));
+
+            foreach (var input in inputs)
+            {
+                if (input.Enabled && input.Displayed)
+                {
+                    string inputType = input.GetAttribute("type");
+                    string inputTag = input.TagName.ToLower();
+                    string inputId = input.GetAttribute("id");
+
+                    if (inputType == "radio" && !input.Selected && inputId.EndsWith("_1"))
+                    {
+                        var label = Driver.FindElement(By.CssSelector($"label[for='{inputId}']"));
+                        label.Click();
+                    }
+                    else if (inputType == "checkbox" && !input.Selected)
+                    {
+                        var label = Driver.FindElement(By.CssSelector($"label[for='{inputId}']"));
+                        label.Click();
+                    }
+                    else if ((inputType == "text" || inputTag == "textarea") && string.IsNullOrWhiteSpace(input.GetAttribute("value")))
+                    {
+                        input.SendKeys("Test");
+                    }
+                    else if (inputTag == "select")
+                    {
+                        var selectElement = new SelectElement(input);
+                        if (selectElement.Options.Count > 1)
+                        {
+                            selectElement.SelectByIndex(1); // Select the second option (index 1)
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+        /// <summary>
+        /// Waits until the page is fully loaded by checking the document.readyState.
+        /// </summary>
+        /// <param name="driver">The WebDriver instance.</param>
+        /// <param name="timeoutInSeconds">The timeout in seconds for waiting.</param>
+        public static void WaitForPageToLoad()
+        {
+            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(DefaultTimeoutInSeconds));
+            wait.Until(d => ((IJavaScriptExecutor) d).ExecuteScript("return document.readyState").Equals("complete"));
+            wait.Until(d => (bool)((IJavaScriptExecutor)d).ExecuteScript("return jQuery.active == 0"));
+            Thread.Sleep(100);
+        }
+
 
         /// <summary>
         /// Waits for the element specified by the locator to be clickable.
@@ -317,8 +370,10 @@ namespace Sel.Utilities
         /// </summary>
         /// <param name="locator">The By locator for the element.</param>
         /// <param name="text">The text to be sent to the element.</param>
-        public static By SendKeys(this By locator, string? text)
+        public static By SendKeys(this By locator, string text)
         {
+            if (Driver.FindElements(locator).Count == 0) return locator;
+
             try
             {
                 IWebElement element = Driver.FindElement(locator);

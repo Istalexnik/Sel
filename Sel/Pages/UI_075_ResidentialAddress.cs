@@ -1,49 +1,29 @@
-﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Sel.Data;
-using System.Threading;
-using Sel.Utilities;
-
-namespace Sel.Pages
+﻿namespace Sel.Pages
 {
     public class UI_075_ResidentialAddress
     {
-        By rbValidation = By.CssSelector("label[for='ctl00_Main_content_ucAddress_rdoCorrectedResidentialAddress_0']");
-        By rbValidation2 = By.CssSelector("label[for='ctl00_Main_content_ucAddress_rdoCorrectedMailingAddress_0']");
-        By txtAddress1 = By.Id("ctl00_Main_content_ucAddress_txtAddress1");
-        By ddWard = By.Id("ctl00_Main_content_ucAddress_ddlAltGeo");
-        By rbAddressConfidentialityProgram = By.CssSelector("label[for='ctl00_Main_content_ucAddress_rbACPEnrollment_1']");
-        By cbSameAddress = By.Id("ctl00_Main_content_ucAddress_chkPopulateMailAddress");
-        By btnNext = By.Id("ctl00_Main_content_btnNext");
+        By rbValidation = By.CssSelector("label[for$=rdoCorrectedResidentialAddress_0]");
+        By rbValidation2 = By.CssSelector("label[for=rdoCorrectedMailingAddress_0]");
+        By txtAddress1 = By.CssSelector("input[id$=txtAddress1]");
+        By ddWard = By.CssSelector("select[id$=ddlAltGeo]");
+        By rbAddressConfidentialityProgram = By.CssSelector("label[for=rbACPEnrollment_1]");
+        By cbSameAddress = By.CssSelector("label[for$=chkPopulateMailAddress]");
+        By btnNext = By.CssSelector("input[id$=btnNext]");
 
-        
         public UI_075_ResidentialAddress()
         {
-            Thread.Sleep(200);
-
+            if (Helper.CheckPause(Enums.PageType.ResidentialAddress)) return;
             rbAddressConfidentialityProgram.Click();
-
-            txtAddress1.WaitForElementToBeClickable().SendKeys(TestData.Address1 + Keys.Tab);
-
-            if (new[] {"IA", "DC", "LA"}.Contains(TestData.StateAbbreviation!))
+            txtAddress1.SendKeys(TestData.Address1 + Keys.Tab);
+            if (new[] { "IA", "DC", "LA" }.Contains(TestData.StateAbbreviation!))
             {
                 txtAddress1.WaitForElementToBeStaleAndRefind();
             }
-
-            ddWard.SelectDropdownByIndex("1");  //.WaitForElementToBeStaleAndRefind()    -- DC UI UAT
-
-            rbValidation.Click();   //.WaitForElementToBeStaleAndRefind()  -- DC UI UAT
-
+            ddWard.SelectDropdownByIndex("1");
+            rbValidation.Click();
             cbSameAddress.Click();
-
-
-            btnNext.WaitForElementToBeClickable().Click();
-
+            CheckInputs();
+            btnNext.Click();
         }
-
     }
 }

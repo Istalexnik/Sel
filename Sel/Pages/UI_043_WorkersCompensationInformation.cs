@@ -1,12 +1,4 @@
-﻿using OpenQA.Selenium;
-using Sel.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Sel.Pages
+﻿namespace Sel.Pages
 {
     public class UI_043_WorkersCompensationInformation
     {
@@ -15,10 +7,8 @@ namespace Sel.Pages
 
         public UI_043_WorkersCompensationInformation()
         {
-            if (!rbReceivedWorkCompNo.FindIt()) return;
-
+            if (Helper.CheckPause(Enums.PageType.WorkersCompensationInformation)) return;
             rbReceivedWorkCompNo.Click();
-
             btnNext.Click();
         }
     }

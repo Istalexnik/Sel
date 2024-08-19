@@ -1,13 +1,4 @@
-﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Sel.Data;
-using System.Threading;
-using Sel.Utilities;
-namespace Sel.Pages
+﻿namespace Sel.Pages
 {
     public class UI_065_LoginInformation
     {
@@ -24,52 +15,30 @@ namespace Sel.Pages
         By txtDOBConfirm = By.CssSelector("input[id$=txtDOBConfirm]");
         By txtCityOfBirth = By.CssSelector("input[id$=txtCityOfBirth]");
         By txtMothersName = By.CssSelector("input[id$=txtMothersMaidenName]");
-        By rbGenderMail = By.CssSelector("label[for$=rblGender_1]");
+        By rbGenderFemale = By.CssSelector("label[for$=rblGender_0]");
         By rbBeenArrestedNo = By.CssSelector("label[for$=rblArrested_1]");
         By btnNext = By.CssSelector("input[id$=btnNext]");
 
         public UI_065_LoginInformation()
         {
-            Helper.CheckPause(Enums.PageType.LoginInformation);
-
+            if (Helper.CheckPause(Enums.PageType.LoginInformation)) return;
             txtUsername.SendKeys(TestData.Username);
-
-            Thread.Sleep(300);
-
-            txtPassword.WaitForElementToBeClickable().SendKeys(TestData.Password);
-
+            txtPassword.SendKeys(TestData.Password);
             txtPassword2.SendKeys(TestData.Password);
-
             ddSecurityQuestion.SelectDropdownByIndex("1");
-
-            Thread.Sleep(100);
-
             txtSecurityResponse.SendKeys(TestData.SecurityResponse);
-
-            Thread.Sleep(200);
-
-            txtZip.WaitForElementToBeClickable().SendKeys(TestData.Zip);
-            
+            txtZip.SendKeys(TestData.Zip!);
             rbAuthorizedToWork.Click();
-
-            txtEmail.WaitForElementToBeClickable().SendKeys(TestData.Email);
-
+            txtEmail.SendKeys(TestData.Email);
             txtEmail2.SendKeys(TestData.Email);
-
             txtDOB.SendKeys(TestData.DOB);
-
             txtDOBConfirm.SendKeys(TestData.DOB);
-
             txtCityOfBirth.SendKeys("Tampa");
-
             txtMothersName.SendKeys("Test");
-
-            rbGenderMail.Click();
-
+            rbGenderFemale.Click();
             rbBeenArrestedNo.Click();
-
+            CheckInputs();
             btnNext.Click();
-
         }
     }
 }

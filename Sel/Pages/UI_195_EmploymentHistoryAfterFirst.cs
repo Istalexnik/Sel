@@ -21,7 +21,7 @@ namespace Sel.Pages
         public UI_195_EmploymentHistoryAfterFirst()
         {
 
-            if (TestData.Type.Contains(3) && TestData.Type.Contains(2))
+            if (TestData.ClaimType != Enums.ClaimType.UCX && TestData.ClaimType != Enums.ClaimType.Regular)
             {
                 btnNext.Click();
                 new UI_190_EmployerPage(TestData.Employer2!, TestData.WorkBeginDate2, TestData.WorkEndDate2);

@@ -39,7 +39,7 @@ namespace Sel.Pages
 
             if (!rbMajorDisasterNo.FindIt()) return;
 
-            if (!TestData.Type.Contains(6))
+            if (TestData.ClaimType != Enums.ClaimType.DUA)
             {
                 rbMajorDisasterNo.Click();
             }
