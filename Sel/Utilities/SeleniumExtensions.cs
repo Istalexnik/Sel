@@ -59,13 +59,11 @@ namespace Sel.Utilities
 
                     if (inputType == "radio" && !input.Selected && inputId.EndsWith("_1"))
                     {
-                        var label = Driver.FindElement(By.CssSelector($"label[for='{inputId}']"));
-                        label.Click();
+                        By.CssSelector($"label[for='{inputId}']").Click();
                     }
                     else if (inputType == "checkbox" && !input.Selected)
                     {
-                        var label = Driver.FindElement(By.CssSelector($"label[for='{inputId}']"));
-                        label.Click();
+                        By.CssSelector($"label[for='{inputId}']").Click();
                     }
                     else if ((inputType == "text" || inputTag == "textarea") && string.IsNullOrWhiteSpace(input.GetAttribute("value")))
                     {
@@ -74,7 +72,9 @@ namespace Sel.Utilities
                     else if (inputTag == "select")
                     {
                         var selectElement = new SelectElement(input);
-                        if (selectElement.Options.Count > 1)
+                        var selectedOption = selectElement.SelectedOption;
+
+                        if (selectElement.Options.Count > 1 && selectedOption == selectElement.Options[0])
                         {
                             selectElement.SelectByIndex(1); // Select the second option (index 1)
                         }
@@ -82,6 +82,8 @@ namespace Sel.Utilities
                 }
             }
         }
+
+
 
 
 
@@ -95,7 +97,7 @@ namespace Sel.Utilities
             WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(DefaultTimeoutInSeconds));
             wait.Until(d => ((IJavaScriptExecutor) d).ExecuteScript("return document.readyState").Equals("complete"));
             wait.Until(d => (bool)((IJavaScriptExecutor)d).ExecuteScript("return jQuery.active == 0"));
-            Thread.Sleep(100);
+            Thread.Sleep(200);
         }
 
 
@@ -105,29 +107,39 @@ namespace Sel.Utilities
         /// <param name="locator">The By locator for the element.</param>
         /// <param name="waitTimeInSeconds">Optional timeout in seconds. Uses default if not provided.</param>
         /// <returns>Returns the locator of the element.</returns>
-        public static By WaitForElementToBeClickable(this By locator, int? waitTimeInSeconds = null)
+        public static By WaitForElementToBeClickable(this By locator, int waitTimeInSeconds = 30)
         {
             var wait = GetWait(waitTimeInSeconds);
             IWebElement? element = null;
+
             try
             {
                 wait.Until(d =>
                 {
-                    element = d.FindElement(locator);
-                    return element.Displayed && element.Enabled;
+                    try
+                    {
+                        element = d.FindElement(locator);
+                        return element.Displayed && element.Enabled;
+                    }
+                    catch (StaleElementReferenceException)
+                    {
+                        return false;
+                    }
+                    catch (NoSuchElementException)
+                    {
+                        return false;
+                    }
                 });
             }
             catch (WebDriverTimeoutException)
             {
                 throw new InvalidOperationException($"Element with locator {locator} was not clickable within the given wait time.");
             }
-            catch (NoSuchElementException)
-            {
-                throw new NoSuchElementException(string.Format(ErrorMessages["ElementNotFound"], locator, "WaitForElementToBeClickable()"));
-            }
-
             return locator;
         }
+
+
+
 
         /// <summary>
         /// Waits for the element specified by the locator to be visible.
@@ -305,6 +317,8 @@ namespace Sel.Utilities
         {
             if (Driver.FindElements(locator).Count == 0) return locator;
 
+            locator.WaitForElementToBeClickable();
+
             try
             {
                 Driver.FindElement(locator).Click();
@@ -370,7 +384,7 @@ namespace Sel.Utilities
         /// </summary>
         /// <param name="locator">The By locator for the element.</param>
         /// <param name="text">The text to be sent to the element.</param>
-        public static By SendKeys(this By locator, string text)
+        public static By EnterText(this By locator, string text)
         {
             if (Driver.FindElements(locator).Count == 0) return locator;
 
@@ -383,25 +397,8 @@ namespace Sel.Utilities
             {
                 throw new NoSuchElementException(string.Format(ErrorMessages["ElementNotFound"], locator, "SendKeys()"));
             }
+            locator.WaitForElementToBeClickable();
             return locator;
-        }
-
-
-        /// <summary>
-        /// Sends the specified text to an element within an iframe, if the iframe exists.
-        /// </summary>
-        /// <param name="locator">The By locator for the iframe element.</param>
-        /// <param name="locatorIFrameElement">The By locator for the target element inside the iframe to which text will be sent.</param>
-        /// <param name="text">The text to be sent to the target element.</param>
-        public static void SendTextToIFrame(this By locator, By locatorIFrameElement, string text)
-        {
-            if (Driver.FindElements(locator).Count() > 0)
-            {
-                IWebElement iframe = Driver.FindElement(locator);
-                Driver.SwitchTo().Frame(iframe);
-                Driver.FindElement(locatorIFrameElement).SendKeys(text);
-                Driver.SwitchTo().ParentFrame();
-            }
         }
 
 
@@ -411,7 +408,7 @@ namespace Sel.Utilities
         /// <param name="locator">The By locator used to identify and locate the element on the webpage.</param>
         /// <param name="text">The text to be sent to the identified element.</param>
         /// <returns>Returns the original locator.</returns>
-        public static By EnterText(this By locator, string? text, By suggesstionsLocator)
+        public static By EnterText(this By locator, string text, By suggesstionsLocator)
         {
             try
             {
@@ -460,6 +457,25 @@ namespace Sel.Utilities
 
             }
             return locator;
+        }
+
+
+
+        /// <summary>
+        /// Sends the specified text to an element within an iframe, if the iframe exists.
+        /// </summary>
+        /// <param name="locator">The By locator for the iframe element.</param>
+        /// <param name="locatorIFrameElement">The By locator for the target element inside the iframe to which text will be sent.</param>
+        /// <param name="text">The text to be sent to the target element.</param>
+        public static void SendTextToIFrame(this By locator, By locatorIFrameElement, string text)
+        {
+            if (Driver.FindElements(locator).Count() > 0)
+            {
+                IWebElement iframe = Driver.FindElement(locator);
+                Driver.SwitchTo().Frame(iframe);
+                Driver.FindElement(locatorIFrameElement).SendKeys(text);
+                Driver.SwitchTo().ParentFrame();
+            }
         }
 
 

@@ -27,15 +27,15 @@ namespace Sel.Pages
         {
             if (!rbDirectResultYes.FindIt()) return;
 
-            txtDescribeInability.SendKeys("Test");
+            txtDescribeInability.EnterText("Test");
             rbDirectResultYes.Click();
-            txtDescribeNature.SendKeys("Test");
-            txtFirstDayLimitation.SendKeys(TestData.WorkEndDate1);
+            txtDescribeNature.EnterText("Test");
+            txtFirstDayLimitation.EnterText(TestData.WorkEndDate1);
             rbUnableToWorkNo.Click();
             rbUnableToReachPlaceNo.Click();
             rbOpenForBussinessYes.Click();
             rbNotifiedEmployerYes.Click();
-            txtProvideName.WaitForElementToBeVisible().SendKeys("Test");
+            txtProvideName.WaitForElementToBeVisible().EnterText("Test");
 
             rbPositionHeldForYouYes.Click();
 

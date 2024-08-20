@@ -21,8 +21,8 @@ namespace Sel.Pages
         public UI_215_AcknowledgmentPage()
         {
             ClickAllCheckBoxes();
-            txtName.SendKeys($"{TestData.FirstName} {TestData.LastName}");
-            txtDate.SendKeys(DateTime.Today.AddDays(-1).ToString("MM/dd/yyyy"));
+            txtName.EnterText($"{TestData.FirstName} {TestData.LastName}");
+            txtDate.EnterText(DateTime.Today.AddDays(-1).ToString("MM/dd/yyyy"));
 
             if (new[] { "PA", "PR", "LA" }.Any(site => TestData.StateAbbreviation!.Contains(site)))
             {

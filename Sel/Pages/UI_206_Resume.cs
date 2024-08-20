@@ -32,7 +32,7 @@ namespace Sel.Pages
 
             spUpload.WaitForElementToBeVisible().Click();
 
-            txtTitle.WaitForElementToBeVisible().SendKeys("Test");
+            txtTitle.WaitForElementToBeVisible().EnterText("Test");
 
             btnSave.Click();
             btnNo.Click();

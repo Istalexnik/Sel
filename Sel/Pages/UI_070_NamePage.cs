@@ -9,8 +9,8 @@
         public UI_070_NamePage()
         {
             if (Helper.CheckPause(Enums.PageType.NamePage)) return;
-            txtFirstName.SendKeys(TestData.FirstName);
-            txtLastName.SendKeys(TestData.LastName);
+            txtFirstName.EnterText(TestData.FirstName);
+            txtLastName.EnterText(TestData.LastName);
             CheckInputs();
             btnNext.Click();
         }

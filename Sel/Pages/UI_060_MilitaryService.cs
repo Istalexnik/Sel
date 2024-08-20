@@ -51,9 +51,9 @@
                 ddWherePhysicallyLocated.SelectDropdownByValue(TestData.StateAbbreviation);
                 btnOk.Click();
                 rbLocatedInHostStateYes.Click();
-                txtAddress.SendKeys(TestData.Address1);
-                txtZip.SendKeys(TestData.Zip!);
-                txtCity.SendKeys("City");
+                txtAddress.EnterText(TestData.Address1);
+                txtZip.EnterText(TestData.Zip!);
+                txtCity.EnterText("City");
                 CheckInputs();
                 btnNext.Click();
 
@@ -66,19 +66,19 @@
                 rbHaveYouFiledNo.Click();
                 rbDD214Yes.Click();
                 ddServiceBranch.SelectDropdownByIndex("1");
-                txtEntryDate.SendKeys(TestData.WorkBeginDate1);
-                txtSeparationDate.SendKeys(TestData.WorkEndDate1);
+                txtEntryDate.EnterText(TestData.WorkBeginDate1);
+                txtSeparationDate.EnterText(TestData.WorkEndDate1);
                 ddCharacterOfService.SelectDropdownByIndex("1");
                 ddReasonForSeparation.SelectDropdownByIndex("1");
                 rbGovernmentShutdownNo.Click();
                 ddPayGrade.SelectDropdownByIndex("1");
-                txtAccruedDaysOfLeave.SendKeys("0");
-                txtLostDays.SendKeys("0");
+                txtAccruedDaysOfLeave.EnterText("0");
+                txtLostDays.EnterText("0");
                 rbPhysicalDisabilityNo.Click();
                 rbMilitaryRetireeNo.Click();
                 rbCompletedFirstTermNo.Click();
-                txtYearsAgreed.SendKeys("1");
-                txtYearsCompleted.SendKeys("1");
+                txtYearsAgreed.EnterText("1");
+                txtYearsCompleted.EnterText("1");
                 rbAppliedForEduAllowanceNo.Click();
                 rbAppliedForAllowanceNo.Click();
                 rbAppliedForAssistanceNo.Click();

@@ -22,19 +22,19 @@
         public UI_065_LoginInformation()
         {
             if (Helper.CheckPause(Enums.PageType.LoginInformation)) return;
-            txtUsername.SendKeys(TestData.Username);
-            txtPassword.SendKeys(TestData.Password);
-            txtPassword2.SendKeys(TestData.Password);
+            txtUsername.EnterText(TestData.Username);
+            txtPassword.EnterText(TestData.Password);
+            txtPassword2.EnterText(TestData.Password);
             ddSecurityQuestion.SelectDropdownByIndex("1");
-            txtSecurityResponse.SendKeys(TestData.SecurityResponse);
-            txtZip.SendKeys(TestData.Zip!);
+            txtSecurityResponse.EnterText(TestData.SecurityResponse);
+            txtZip.EnterText(TestData.Zip!);
             rbAuthorizedToWork.Click();
-            txtEmail.SendKeys(TestData.Email);
-            txtEmail2.SendKeys(TestData.Email);
-            txtDOB.SendKeys(TestData.DOB);
-            txtDOBConfirm.SendKeys(TestData.DOB);
-            txtCityOfBirth.SendKeys("Tampa");
-            txtMothersName.SendKeys("Test");
+            txtEmail.EnterText(TestData.Email);
+            txtEmail2.EnterText(TestData.Email);
+            txtDOB.EnterText(TestData.DOB);
+            txtDOBConfirm.EnterText(TestData.DOB);
+            txtCityOfBirth.EnterText("Tampa");
+            txtMothersName.EnterText("Test");
             rbGenderFemale.Click();
             rbBeenArrestedNo.Click();
             CheckInputs();

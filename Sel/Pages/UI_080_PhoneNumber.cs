@@ -1,31 +1,22 @@
-﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Sel.Data;
-using Sel.Utilities;
-
-
-namespace Sel.Pages
+﻿namespace Sel.Pages
 {
     public class UI_080_PhoneNumber
     {
-        By txtPhone1 = By.Id("ctl00_Main_content_ucPhone_txtPrimePhone1");
-        By txtPhone2 = By.Id("ctl00_Main_content_ucPhone_txtPrimePhone2");
-        By txtPhone3 = By.Id("ctl00_Main_content_ucPhone_txtPrimePhone3");
-        By ddPhoneType = By.Id("ctl00_Main_content_ucPhone_ddlPrimePhoneType");
-        By btnNext = By.Id("ctl00_Main_content_btnNext");
+        By txtPhone1 = By.CssSelector("input[id$=txtPrimePhone1]");
+        By txtPhone2 = By.CssSelector("input[id$=ctl00_Main_content_ucPhone_txtPrimePhone2]");
+        By txtPhone3 = By.CssSelector("input[id$=ctl00_Main_content_ucPhone_txtPrimePhone3]");
+        By ddPhoneType = By.CssSelector("select[id$=ddlPrimePhoneType]");
+        By btnNext = By.CssSelector("input[id$=btnNext]");
 
         public UI_080_PhoneNumber()
         {
-            txtPhone1.SendKeys(TestData.Phone.Substring(0, 3));
-            txtPhone2.SendKeys(TestData.Phone.Substring(3, 3));
-            txtPhone3.SendKeys(TestData.Phone.Substring(6, 4));
+            if (Helper.CheckPause(Enums.PageType.PhoneNumber)) return;
+            txtPhone1.EnterText(TestData.Phone.Substring(0, 3));
+            txtPhone2.EnterText(TestData.Phone.Substring(3, 3));
+            txtPhone3.EnterText(TestData.Phone.Substring(6, 4));
             ddPhoneType.SelectDropdownByIndex("1");
+            CheckInputs();
             btnNext.Click();
-
         }
     }
 }

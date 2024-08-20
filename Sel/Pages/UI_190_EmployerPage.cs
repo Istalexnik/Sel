@@ -132,11 +132,11 @@ namespace Sel.Pages
 
 
 
-            txtPhone1.Clear().SendKeys(TestData.Phone.Substring(0, 3));
+            txtPhone1.Clear().EnterText(TestData.Phone.Substring(0, 3));
 
-            txtPhone2.Clear().SendKeys(TestData.Phone.Substring(3, 3));
+            txtPhone2.Clear().EnterText(TestData.Phone.Substring(3, 3));
 
-            txtPhone3.Clear().SendKeys(TestData.Phone.Substring(6, 4));
+            txtPhone3.Clear().EnterText(TestData.Phone.Substring(6, 4));
 
             rbDCGovermentAgencyNo.Click();
 
@@ -152,7 +152,7 @@ namespace Sel.Pages
 
             if (string.IsNullOrEmpty(txtEmployerNameOnCheckStub.WaitForElementToBeClickable().GetText()))
             {
-                txtEmployerNameOnCheckStub.SendKeys(spanEmployerName.Text());
+                txtEmployerNameOnCheckStub.EnterText(spanEmployerName.Text());
             }
 
             txtJobTitle.EnterText2(TestData.JobTitle, txtSuggestions).WaitForElementToBeStaleAndRefind();
@@ -165,19 +165,19 @@ namespace Sel.Pages
 
             ddHours.SelectDropdownByIndex("1");
 
-            txtGrossSalary.SendKeys("40");
+            txtGrossSalary.EnterText("40");
 
             ddSalaryBasedUpon.SelectDropdownByIndex("1");
 
             rbComissionBasedNo.Click();
 
-            txtWorkBeginDate.SendKeys(beginDate);
+            txtWorkBeginDate.EnterText(beginDate);
 
             rbCurrentlyEmployedNo.Click();
 
-            txtearningsThisWeek.SendKeys("0");
+            txtearningsThisWeek.EnterText("0");
 
-            txtHoursThisWeek.SendKeys("0");
+            txtHoursThisWeek.EnterText("0");
 
             ddSeparationCategory.SelectDropdownByText("Lay", true);
 
@@ -185,7 +185,7 @@ namespace Sel.Pages
 
             rbVoluntiryLayoffNo.Click();
             
-            txtWorkEndDate.SendKeys(endDate);
+            txtWorkEndDate.EnterText(endDate);
 
             rbRecallNo.Click();
 

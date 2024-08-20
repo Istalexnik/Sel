@@ -60,7 +60,7 @@
                 rbInAnotherStateNo.Click();
                 rbWagesAssignedOtherStateNo.Click();
                 rbOutsideOfUSNo.Click();
-                txtSF50.SendKeys(TestData.StateAbbreviation!);
+                txtSF50.EnterText(TestData.StateAbbreviation!);
                 CheckInputs();
                 btnNext.Click();
 
@@ -70,31 +70,31 @@
                 btnNext.Click();
 
                 //employer info
-                inputFIC.SendKeys(Keys.Down + Keys.Down + Keys.Down + Keys.Tab);
+                inputFIC.EnterText(Keys.Down + Keys.Down + Keys.Down + Keys.Tab);
                 ddDestinationCode.SelectDropdownByIndex("1");
                 rbOtherEmploymentNo.Click();
                 ddStateOfEmployment.SelectDropdownByValue(TestData.StateAbbreviation);
-                txtCity.SendKeys("City");
-                txtCity2.SendKeys("City");
+                txtCity.EnterText("City");
+                txtCity2.EnterText("City");
                 rbForm8Yes.Click();
                 rbForm50Yes.Click();
-                txtWorkBeginDate.SendKeys(TestData.WorkBeginDate1);
-                txtWorkEndDate.SendKeys(TestData.WorkEndDate1);
-                txtSearationpDate.SendKeys(TestData.WorkEndDate1);
+                txtWorkBeginDate.EnterText(TestData.WorkBeginDate1);
+                txtWorkEndDate.EnterText(TestData.WorkEndDate1);
+                txtSearationpDate.EnterText(TestData.WorkEndDate1);
                 ddSeparationReason.SelectDropdownByText("Lay", true);
                 rbGovernmentShutdownNo.Click();
                 ddEmployerCategory.SelectDropdownByIndex("1");
                 ddOccupation.SelectDropdownByIndex("1");
-                txtWagesQ1.SendKeys("5000");
-                txtWeeksQ1.SendKeys("13");
-                txtWagesQ2.SendKeys("5000");
-                txtWeeksQ2.SendKeys("13");
-                txtWagesQ3.SendKeys("5000");
-                txtWeeksQ3.SendKeys("13");
-                txtWagesQ4.SendKeys("5000");
-                txtWeeksQ4.SendKeys("13");
-                txtWagesQ5.SendKeys("5000");
-                txtWagesQ6.SendKeys("5000");
+                txtWagesQ1.EnterText("5000");
+                txtWeeksQ1.EnterText("13");
+                txtWagesQ2.EnterText("5000");
+                txtWeeksQ2.EnterText("13");
+                txtWagesQ3.EnterText("5000");
+                txtWeeksQ3.EnterText("13");
+                txtWagesQ4.EnterText("5000");
+                txtWeeksQ4.EnterText("13");
+                txtWagesQ5.EnterText("5000");
+                txtWagesQ6.EnterText("5000");
                 rbDidYouWorkInNEAfterThatNo.Click();
                 rbDidYouWorkAnywhereAfterThatNo.Click();
                 CheckInputs();

@@ -14,11 +14,7 @@
         {
             if (Helper.CheckPause(Enums.PageType.ResidentialAddress)) return;
             rbAddressConfidentialityProgram.Click();
-            txtAddress1.SendKeys(TestData.Address1 + Keys.Tab);
-            if (new[] { "IA", "DC", "LA" }.Contains(TestData.StateAbbreviation!))
-            {
-                txtAddress1.WaitForElementToBeStaleAndRefind();
-            }
+            txtAddress1.EnterText(TestData.Address1 + Keys.Tab);
             ddWard.SelectDropdownByIndex("1");
             rbValidation.Click();
             cbSameAddress.Click();

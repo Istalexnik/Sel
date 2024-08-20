@@ -1,27 +1,15 @@
-﻿using Sel.Data;
-using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Sel.Utilities;
-
-namespace Sel.Pages
+﻿namespace Sel.Pages
 {
     public class UI_120_LaborUnion
     {
-        By titleLaborUnion = By.XPath("(//h2[text()='Labor Union Member'])");
-        By rbMemberNo = By.Id("ctl00_Main_content_ucUILaborUnion_rblUnionMember_1");
+        By rbMemberNo = By.CssSelector("label[for$=rblUnionMember_1]");
+        By btnNext = By.CssSelector("input[id$=btnNext]");
 
-        By btnNext = By.Id("ctl00_Main_content_btnNext");
         public UI_120_LaborUnion()
         {
-            if (new[] { "PFL" }.Contains(TestData.StateAbbreviation!)) return;
-            if (!titleLaborUnion.FindIt()) return;
-
+            if (Helper.CheckPause(Enums.PageType.LaborUnion)) return;
             rbMemberNo.Click();
-
+            CheckInputs();
             btnNext.Click();
         }
     }

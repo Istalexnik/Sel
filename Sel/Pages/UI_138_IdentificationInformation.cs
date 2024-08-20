@@ -26,7 +26,7 @@ namespace Sel.Pages
 
             rbHaveDriverLicenseYes.Click();
 
-            txtLicenseNumber.SendKeys("Test");
+            txtLicenseNumber.EnterText("Test");
 
             ddStateIssued.SelectDropdownByValue(TestData.StateAbbreviation);
 

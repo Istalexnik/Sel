@@ -1,51 +1,26 @@
-﻿using Sel.Data;
-using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Sel.Utilities;
-
-namespace Sel.Pages
+﻿namespace Sel.Pages
 {
     public class UI_110_EmploymentMiscellaneous
     {
-        By rbAttendingTrainingNo = By.Id("ctl00_Main_content_ucUIEmploymentStatus_rblAttendingTraining_1");
-        
-        By rbComissionBasisNo = By.CssSelector("label[for='ctl00_Main_content_ucUIEmploymentStatus_rblCommissionBasis_1']");
-        
-        By rbRefusedJobNo = By.CssSelector("label[for='ctl00_Main_content_ucUIEmploymentStatus_rblRefusedAJobOffer_1']");
-        
-        By rbRefusedReferralNo = By.CssSelector("label[for='ctl00_Main_content_ucUIEmploymentStatus_rblRefusedAReferralToWork_1']");
-                
-        By rbResultOfTradeNo = By.Id("ctl00_Main_content_ucUIEmploymentStatus_rblCertifiedTrade_1");
-
-        By rbProfessionalAthleteNo = By.Id("ctl00_Main_content_ucUIEmploymentStatus_rblWorkedAsProfessionalAthlete_1");
-
-        By rbHeadStartNo = By.CssSelector("label[for='ctl00_Main_content_ucUIEmploymentStatus_rblEmployedBySchool_1']");
-
-        By btnNext = By.Id("ctl00_Main_content_btnNext");
+        By rbAttendingTrainingNo = By.CssSelector("label[for$=rblAttendingTraining_1]");
+        By rbComissionBasisNo = By.CssSelector("label[for$=rblCommissionBasis_1]");
+        By rbRefusedJobNo = By.CssSelector("label[for$=rblRefusedAJobOffer_1]");
+        By rbRefusedReferralNo = By.CssSelector("label[for$=rblRefusedAReferralToWork_1]");
+        By rbResultOfTradeNo = By.CssSelector("label[for$=rblCertifiedTrade_1]");
+        By rbProfessionalAthleteNo = By.CssSelector("label[for$=rblWorkedAsProfessionalAthlete_1]");
+        By rbHeadStartNo = By.CssSelector("label[for$=rblEmployedBySchool_1]");
+        By btnNext = By.CssSelector("input[id$=btnNext]");
         public UI_110_EmploymentMiscellaneous()
         {
-            if (new[] { "PFL" }.Contains(TestData.StateAbbreviation!)) return;
-
-            if (!rbAttendingTrainingNo.FindIt()) return; 
-
+            if (Helper.CheckPause(Enums.PageType.EmploymentMiscellaneous)) return;
             rbAttendingTrainingNo.Click();
-
             rbComissionBasisNo.Click();
-
             rbRefusedJobNo.Click();
-
             rbRefusedReferralNo.Click();
-
             rbResultOfTradeNo.Click();
-
             rbProfessionalAthleteNo.Click();
-
             rbHeadStartNo.Click();
-
+            CheckInputs();
             btnNext.Click();
         }
     }

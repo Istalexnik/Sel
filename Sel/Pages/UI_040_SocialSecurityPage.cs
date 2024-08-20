@@ -9,8 +9,8 @@
         public UI_040_SocialSecurityPage()
         {
             if (Helper.CheckPause(Enums.PageType.SocialSecurityPage)) return;
-            txtSSN.SendKeys(TestData.SSN);
-            txtSSNReenter.SendKeys(TestData.SSN);
+            txtSSN.EnterText(TestData.SSN);
+            txtSSNReenter.EnterText(TestData.SSN);
             btnNext.Click();
         }
     }

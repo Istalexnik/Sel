@@ -20,9 +20,9 @@ namespace Sel.Pages
         {
             if (!rbEvidenceNo.FindIt()) return;
 
-            txtExplainWhyLate.SendKeys("Test");
+            txtExplainWhyLate.EnterText("Test");
             rbEvidenceNo.Click();
-            txtExplainWhyNoEvidence.WaitForElementToBeVisible().SendKeys("Test");
+            txtExplainWhyNoEvidence.WaitForElementToBeVisible().EnterText("Test");
             btnNext.Click();
 
         }

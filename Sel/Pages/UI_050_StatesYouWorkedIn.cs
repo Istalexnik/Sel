@@ -44,16 +44,16 @@
 
                 if (titleCreditWeeks.FindIt())
                 {
-                    txtQW1Q1.SendKeys(TestData.CreditWeeks);
-                    txtQW1Q2.SendKeys(TestData.CreditWeeks);
-                    txtQW1Q3.SendKeys(TestData.CreditWeeks);
-                    txtQW1Q4.SendKeys(TestData.CreditWeeks);
-                    txtQW1Q5.SendKeys(TestData.CreditWeeks);
-                    txtQW2Q1.SendKeys(TestData.CreditWeeks);
-                    txtQW2Q2.SendKeys(TestData.CreditWeeks);
-                    txtQW2Q3.SendKeys(TestData.CreditWeeks);
-                    txtQW2Q4.SendKeys(TestData.CreditWeeks);
-                    txtQW2Q5.SendKeys(TestData.CreditWeeks);
+                    txtQW1Q1.EnterText(TestData.CreditWeeks);
+                    txtQW1Q2.EnterText(TestData.CreditWeeks);
+                    txtQW1Q3.EnterText(TestData.CreditWeeks);
+                    txtQW1Q4.EnterText(TestData.CreditWeeks);
+                    txtQW1Q5.EnterText(TestData.CreditWeeks);
+                    txtQW2Q1.EnterText(TestData.CreditWeeks);
+                    txtQW2Q2.EnterText(TestData.CreditWeeks);
+                    txtQW2Q3.EnterText(TestData.CreditWeeks);
+                    txtQW2Q4.EnterText(TestData.CreditWeeks);
+                    txtQW2Q5.EnterText(TestData.CreditWeeks);
                     btnNext.Click();
                 }
 
