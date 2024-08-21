@@ -8,6 +8,7 @@
         public UI_030_UnemploymentInsuranceCompemsation()
         {
             if (Helper.CheckPause(Enums.PageType.UnemploymentInsuranceCompensation)) return;
+
             rbFilingUI.Click();
             btnNext.Click();
         }

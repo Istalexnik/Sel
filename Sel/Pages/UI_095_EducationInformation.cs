@@ -10,6 +10,7 @@
         public UI_095_EducationInformation()
         {
             if (Helper.CheckPause(Enums.PageType.EducationInformation)) return;
+
             ddHighestLevelEducation.SelectDropdownByIndex("1");
             ddAttendingSchool.SelectDropdownByValue("4");
             rbPlansToAttendSchoolNo.Click();

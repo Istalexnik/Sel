@@ -22,6 +22,7 @@
         public UI_065_LoginInformation()
         {
             if (Helper.CheckPause(Enums.PageType.LoginInformation)) return;
+
             txtUsername.EnterText(TestData.Username);
             txtPassword.EnterText(TestData.Password);
             txtPassword2.EnterText(TestData.Password);

@@ -13,6 +13,7 @@
         public UI_075_ResidentialAddress()
         {
             if (Helper.CheckPause(Enums.PageType.ResidentialAddress)) return;
+
             rbAddressConfidentialityProgram.Click();
             txtAddress1.EnterText(TestData.Address1 + Keys.Tab);
             ddWard.SelectDropdownByIndex("1");

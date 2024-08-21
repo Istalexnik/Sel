@@ -1,11 +1,4 @@
-﻿using Sel.Data;
-using Sel.Enums;
-using Sel.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Sel.Enums;
 
 namespace Sel.Data
 {
@@ -32,7 +25,7 @@ namespace Sel.Data
         public static List<PageType>? SelectedPages { get; set; }
         public static string? Url { get; set; } = "";
         public static string Username { get; set; } = "";
-        public static string Password { get; set; } = "Hrjt2345^^^^^";
+        public static string Password { get; set; } = "Hrjt2345!^^^^^";
         public static string SecurityResponse { get; set; } = "test";
         public static string JobTitle { get; set; } = "test";
         public static string CreditWeeks { get; set; } = "13";

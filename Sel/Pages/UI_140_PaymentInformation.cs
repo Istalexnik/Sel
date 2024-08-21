@@ -1,72 +1,40 @@
-﻿using OpenQA.Selenium;
-using Sel.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace Sel.Pages
+﻿namespace Sel.Pages
 {
     public class UI_140_PaymentInformation
     {
-        By rbPaymentMethodDC = By.Id("ctl00_Main_content_ucUIPayment_rblPaymentMethod_1");
-        
-        By cbAcknowledg = By.Id("ctl00_Main_content_ucUIPayment_cbdebitcardack");
+        By rbPaymentMethodDC = By.CssSelector("label[for$=rblPaymentMethod_1]");
+        By cbAcknowledg = By.CssSelector("label[for$=cbdebitcardack]");
+        By cbAcknowledgLong = By.CssSelector("label[for$=cbdebitcardacklongform]");
+        By chkIUnderstand = By.CssSelector("label[for$=cbdirectdepositack]");
+        By btnOk = By.CssSelector("button[id=btn-dialog-ok]");
+        By linkDisclosure = By.CssSelector("a[id=predisclosurepdf]");
+        By chkPreferredPaymentMethod = By.CssSelector("label[for$=cbDebitCard]");
+        By chkDisclosured = By.CssSelector("label[for$=cbAcknowledgeDebitOnPage]");
+        By chkConsent1099 = By.CssSelector("label[for$=cb1099GConsent_0]");
+        By rbPaperWeeklyCertsNo = By.CssSelector("label[for$=rblWeeklyCert_1]");
+        By rbFederalTaxYes = By.CssSelector("label[id$=rblFederalTaxWithheld_0]");
+        By rbStateTaxYes = By.CssSelector("label[for$=rblStateTaxWithheld_0]");
+        By rbSnapNo = By.CssSelector("label[for$=rblSNAPOverpayment_1]");
+        By btnNext = By.CssSelector("input[id$=btnNext]");
 
-        By cbAcknowledgLong = By.Id("ctl00_Main_content_ucUIPayment_cbdebitcardacklongform");
-
-        By chkIUnderstand = By.CssSelector("label[for='ctl00_Main_content_ucUIPayment_cbdirectdepositack']");
-
-        By btnOk = By.Id("btn-dialog-ok");
-
-        By linkDisclosure = By.Id("predisclosurepdf");
-
-        By chkPreferredPaymentMethod = By.CssSelector("label[for='ctl00_Main_content_ucUIPayment_cbDebitCard']");
-
-        By chkDisclosured = By.CssSelector("label[for='ctl00_Main_content_ucUIPayment_cbAcknowledgeDebitOnPage']");
-     
-        By chkConsent1099 = By.CssSelector("label[for='ctl00_Main_content_ucUIPayment_cb1099GConsent_0']");
-
-        By rbPaperWeeklyCertsNo = By.CssSelector("label[for='ctl00_Main_content_ucUIPayment_rblWeeklyCert_1']");
-
-        By rbFederalTaxYes = By.Id("ctl00_Main_content_ucPaymentDeductions_rblFederalTaxWithheld_0");
-        
-        By rbStateTaxYes = By.Id("ctl00_Main_content_ucPaymentDeductions_rblStateTaxWithheld_0");
-        
-        By rbSnapNo = By.Id("ctl00_Main_content_ucPaymentDeductions_rblSNAPOverpayment_1");
- 
-        By btnNext = By.Id("ctl00_Main_content_btnNext");
         public UI_140_PaymentInformation()
         {
+            if (Helper.CheckPause(Enums.PageType.IdentificationInformation)) return;
+
             rbPaymentMethodDC.Click();
-
             cbAcknowledg.Click();
-
             cbAcknowledgLong.Click();
-
             chkIUnderstand.Click();
-
             btnOk.Click();
-
             linkDisclosure.Click().OpenAndCloseWindow();
-
             chkPreferredPaymentMethod.Click();
-
             chkDisclosured.Click();
-
             chkConsent1099.Click();
-
             rbPaperWeeklyCertsNo.Click();
-
             rbFederalTaxYes.Click();
-
             rbStateTaxYes.Click();
-
             rbSnapNo.Click();
-
+            CheckInputs();
             btnNext.Click();
         }
     }

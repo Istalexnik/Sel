@@ -6,6 +6,7 @@
         public UI_015_EqualOpportunity()
         {
             if (Helper.CheckPause(Enums.PageType.EqualOpportunity)) return;
+
             btnAgree.Click();
         }
     }

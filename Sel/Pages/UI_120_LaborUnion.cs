@@ -8,6 +8,7 @@
         public UI_120_LaborUnion()
         {
             if (Helper.CheckPause(Enums.PageType.LaborUnion)) return;
+
             rbMemberNo.Click();
             CheckInputs();
             btnNext.Click();

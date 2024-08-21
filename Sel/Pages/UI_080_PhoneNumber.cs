@@ -11,6 +11,7 @@
         public UI_080_PhoneNumber()
         {
             if (Helper.CheckPause(Enums.PageType.PhoneNumber)) return;
+
             txtPhone1.EnterText(TestData.Phone.Substring(0, 3));
             txtPhone2.EnterText(TestData.Phone.Substring(3, 3));
             txtPhone3.EnterText(TestData.Phone.Substring(6, 4));

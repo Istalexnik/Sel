@@ -7,6 +7,7 @@
         public UI_020_PrivacyAgreement()
         {
             if (Helper.CheckPause(Enums.PageType.PrivacyAgreement)) return;
+
             btnAgree.Click();
         }
     }

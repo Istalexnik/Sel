@@ -13,6 +13,7 @@
         public UI_110_EmploymentMiscellaneous()
         {
             if (Helper.CheckPause(Enums.PageType.EmploymentMiscellaneous)) return;
+
             rbAttendingTrainingNo.Click();
             rbComissionBasisNo.Click();
             rbRefusedJobNo.Click();

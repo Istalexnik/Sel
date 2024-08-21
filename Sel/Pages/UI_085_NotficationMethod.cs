@@ -14,6 +14,7 @@
         public UI_085_NotficationMethod()
         {
             if (Helper.CheckPause(Enums.PageType.NotficationMethod)) return;
+
             ddUINotices.SelectDropdownByValue("7");
             chkConsent.Click();
             ddOtherNotices.SelectDropdownByValue("7");

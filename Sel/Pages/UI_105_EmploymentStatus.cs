@@ -12,6 +12,7 @@
         public UI_105_EmploymentStatus()
         {
             if (Helper.CheckPause(Enums.PageType.EmploymentStatus)) return;
+
             rbAcceptJobIfOfferedYes.Click();
             rbBeenPhysicallyAbleToWorkYes.Click();
             rbBeenAvailableToWorkYes.Click();

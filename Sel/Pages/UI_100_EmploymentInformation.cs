@@ -16,6 +16,7 @@
         public UI_100_EmploymentInformation()
         {
             if (Helper.CheckPause(Enums.PageType.EmploymentInformation)) return;
+
             ddCurrentEmpStatus.SelectDropdownByValue("3");
             ddTypeOfBusiness.SelectDropdownByIndex("1");
             ddUnempEligibilityStatus.SelectDropdownByIndex("1");

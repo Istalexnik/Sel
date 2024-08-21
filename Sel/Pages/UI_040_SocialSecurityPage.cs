@@ -9,6 +9,7 @@
         public UI_040_SocialSecurityPage()
         {
             if (Helper.CheckPause(Enums.PageType.SocialSecurityPage)) return;
+
             txtSSN.EnterText(TestData.SSN);
             txtSSNReenter.EnterText(TestData.SSN);
             btnNext.Click();

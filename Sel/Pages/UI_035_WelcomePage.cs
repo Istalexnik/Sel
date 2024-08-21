@@ -6,6 +6,7 @@
         public UI_035_WelcomePage()
         {
             if (Helper.CheckPause(Enums.PageType.WelcomePage)) return;
+
             btnNext.Click();
         }
     }

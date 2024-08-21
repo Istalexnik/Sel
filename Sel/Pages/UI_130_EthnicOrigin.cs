@@ -11,8 +11,8 @@
         public UI_130_EthnicOrigin()
         {
             if (Helper.CheckPause(Enums.PageType.EthnicOrigin)) return;
-            rbHispanicNo.Click();
 
+            rbHispanicNo.Click();
             cbRace.Click();
             rbLimitedEnglishNo.Click();
             ddMaritalStatus.SelectDropdownByIndex("1");

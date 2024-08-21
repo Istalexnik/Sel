@@ -11,6 +11,7 @@
         public UI_125_JobTitle()
         {
             if (Helper.CheckPause(Enums.PageType.JobTitle)) return;
+
             txtJobTitle.EnterText("Test", txtSuggestions);
             WaitForSuggestions(ddJobOccupation).SelectDropdownByIndex("1");
             rbWorkedPartTimeNo.Click();

@@ -7,6 +7,7 @@
         public UI_025_IndividualRegistrationType()
         {
             if (Helper.CheckPause(Enums.PageType.IndividualRegistrationType)) return;
+
             lnkRegistration.Click();
         }
     }

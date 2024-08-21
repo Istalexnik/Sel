@@ -8,6 +8,7 @@
         public UI_043_WorkersCompensationInformation()
         {
             if (Helper.CheckPause(Enums.PageType.WorkersCompensationInformation)) return;
+
             rbReceivedWorkCompNo.Click();
             btnNext.Click();
         }

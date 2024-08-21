@@ -8,6 +8,7 @@
         public UI_005_HomePage()
         {
             if (Helper.CheckPause(Enums.PageType.HomePage)) return;
+
             ddLanguage.SelectDropdownByValue("E");
             btnLogin.Click();
         }

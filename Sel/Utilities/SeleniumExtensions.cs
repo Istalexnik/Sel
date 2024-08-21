@@ -44,10 +44,9 @@ namespace Sel.Utilities
 
         public static void CheckInputs()
         {
-            var inputs = Driver.FindElements(By.CssSelector(
-                "input[type='text'][required], textarea[required], input[type='radio'][required], input[type='checkbox'][required], " +
-                "input[type='text'][aria-required='true'], textarea[aria-required='true'], input[type='radio'][aria-required='true'], input[type='checkbox'][aria-required='true'], " +
-                "select[required], select[aria-required='true']"));
+            var cssSelector = "input[required], input[aria-required='true'], textarea[required], textarea[aria-required='true'], select[required], select[aria-required='true']";
+
+            var inputs = Driver.FindElements(By.CssSelector(cssSelector));
 
             foreach (var input in inputs)
             {
@@ -57,17 +56,19 @@ namespace Sel.Utilities
                     string inputTag = input.TagName.ToLower();
                     string inputId = input.GetAttribute("id");
 
+                    By locator = By.CssSelector($"#{inputId}");
+
                     if (inputType == "radio" && !input.Selected && inputId.EndsWith("_1"))
                     {
-                        By.CssSelector($"label[for='{inputId}']").Click();
+                        locator.Click();
                     }
                     else if (inputType == "checkbox" && !input.Selected)
                     {
-                        By.CssSelector($"label[for='{inputId}']").Click();
+                        locator.Click();
                     }
                     else if ((inputType == "text" || inputTag == "textarea") && string.IsNullOrWhiteSpace(input.GetAttribute("value")))
                     {
-                        input.SendKeys("Test");
+                        locator.EnterText("Test");
                     }
                     else if (inputTag == "select")
                     {
@@ -76,12 +77,13 @@ namespace Sel.Utilities
 
                         if (selectElement.Options.Count > 1 && selectedOption == selectElement.Options[0])
                         {
-                            selectElement.SelectByIndex(1); // Select the second option (index 1)
+                            locator.SelectDropdownByIndex("1"); 
                         }
                     }
                 }
             }
         }
+
 
 
 
@@ -96,8 +98,7 @@ namespace Sel.Utilities
         {
             WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(DefaultTimeoutInSeconds));
             wait.Until(d => ((IJavaScriptExecutor) d).ExecuteScript("return document.readyState").Equals("complete"));
-            wait.Until(d => (bool)((IJavaScriptExecutor)d).ExecuteScript("return jQuery.active == 0"));
-            Thread.Sleep(200);
+            Thread.Sleep(300);
         }
 
 
@@ -424,6 +425,7 @@ namespace Sel.Utilities
             }
             catch (NoSuchElementException)
             {
+                
                 throw new NoSuchElementException(string.Format(ErrorMessages["ElementNotFound"], locator, "SendKeys()"));
             }
             catch (ElementNotInteractableException)

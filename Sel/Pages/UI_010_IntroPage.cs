@@ -7,6 +7,7 @@
         public UI_010_IntroPage()
         {
             if (Helper.CheckPause(Enums.PageType.IntroPage)) return;
+
             btnRegistration.Click();
         }
     }

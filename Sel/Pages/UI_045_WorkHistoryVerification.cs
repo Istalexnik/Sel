@@ -8,6 +8,7 @@
         public UI_045_WorkHistoryVerification()
         {
             if (Helper.CheckPause(Enums.PageType.WorkHistoryVerification)) return;
+
             rbDidYouWorkYes.Click();
             btnNext.Click();
         }

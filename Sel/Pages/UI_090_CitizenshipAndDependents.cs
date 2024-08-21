@@ -13,6 +13,7 @@
         public UI_090_CitizenshipAndDependents()
         {
             if (Helper.CheckPause(Enums.PageType.CitizenshipAndDependents)) return;
+
             rbDependents.Click();
             ddHowManyDependents.SelectDropdownByIndex("1");
             ddMartialStatus.SelectDropdownByIndex("1");
